@@ -7,8 +7,12 @@ extends Node2D
 var win = false
 
 func _process(delta):
-	speedLabel.text = str(int(burger.linear_velocity.length() / 100)) + "mph";
 	if !win:
 		if burger.linear_velocity.length() > 5000 and !button.grabbing:
+			speedLabel.text = str(int(burger.linear_velocity.length() / 100)) + "mph";
 			win = true;
 			print_debug("Winner!");
+
+
+func _on_speedometer_update_timer_timeout():
+	speedLabel.text = str(int(burger.linear_velocity.length() / 100)) + "mph";

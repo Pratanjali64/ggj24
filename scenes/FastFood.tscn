@@ -116,5 +116,10 @@ offset_bottom = 55.0
 text = "Speed
 "
 
+[node name="SpeedometerUpdateTimer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
 [connection signal="button_down" from="Burger/Button" to="Burger/Button" method="_on_button_down"]
 [connection signal="button_up" from="Burger/Button" to="Burger/Button" method="_on_button_up"]
+[connection signal="timeout" from="SpeedometerUpdateTimer" to="." method="_on_speedometer_update_timer_timeout"]
