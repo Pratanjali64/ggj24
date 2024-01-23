@@ -1,31 +1,25 @@
-extends Button
+extends RayCast2D
 
 @export var grabber: NodePath
 @export var grabberRigidBody: RigidBody2D
-@export var house: NodePath
 @export var pinJoint: PinJoint2D
 
 var grabbing = false;
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	global_position = get_viewport().get_mouse_position();
 	if grabbing:
 		grabberRigidBody.global_position = get_viewport().get_mouse_position();
-
-
-func _on_button_down():
-	grabbing = true;
-	pinJoint.node_a = grabber;
-	pinJoint.node_b = grabber;
-	grabberRigidBody.global_position = get_viewport().get_mouse_position();
-	pinJoint.global_position = get_viewport().get_mouse_position()
-	pinJoint.node_b = house;
-
-func _on_button_up():
-	pinJoint.node_b = grabber;
-	grabbing = false;
+		
+func _input(event):
+	if event.is_pressed() and "button_index" in event and event.button_index == MOUSE_BUTTON_LEFT:
+		if is_colliding():
+			grabbing = true;
+			pinJoint.node_b = grabber;
+			grabberRigidBody.global_position = get_viewport().get_mouse_position();
+			pinJoint.global_position = get_viewport().get_mouse_position()
+			pinJoint.node_b = get_collider().get_path();
+	if event.is_released() and "button_index" in event and event.button_index == MOUSE_BUTTON_LEFT:
+		pinJoint.node_b = grabber;
+		grabbing = false;

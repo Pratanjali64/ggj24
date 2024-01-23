@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://cao133ey23fvu"]
+[gd_scene load_steps=18 format=3 uid="uid://cao133ey23fvu"]
 
 [ext_resource type="Script" path="res://scenes/HouseFlipper.gd" id="1_h0x04"]
 [ext_resource type="Texture2D" uid="uid://c873ebj7jtks6" path="res://textures/temp_house.png" id="1_ijoo4"]
 [ext_resource type="Script" path="res://scenes/Grabber.gd" id="2_qklsg"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="3_x55vs"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gohya"]
+[ext_resource type="Texture2D" uid="uid://fh8amwobsdpo" path="res://textures/temp_furniture.png" id="5_p1ago"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
 size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gohya"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4b458"]
 size = Vector2(196, 44)
@@ -35,12 +36,24 @@ size = Vector2(6, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulhkr"]
 size = Vector2(2000, 100)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dttm"]
+size = Vector2(129, 128)
+
 [node name="HouseFlipper" type="Node2D"]
 script = ExtResource("1_h0x04")
 
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(569, 522)
+node_a = NodePath("../Grabber")
+node_b = NodePath("../Grabber")
+softness = 0.4
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="PinJoint2D"]
+mesh = SubResource("QuadMesh_q2v6s")
+
 [node name="House" type="RigidBody2D" parent="."]
 position = Vector2(569, 522)
-mass = 200.0
+mass = 250.0
 sleeping = true
 linear_damp = 1.0
 angular_damp = 1.0
@@ -53,31 +66,6 @@ texture = ExtResource("1_ijoo4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House"]
 scale = Vector2(10, 10)
 shape = SubResource("RectangleShape2D_gohya")
-
-[node name="Button" type="Button" parent="House" node_paths=PackedStringArray("grabberRigidBody", "pinJoint")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -98.0
-offset_right = -90.0
-offset_bottom = -88.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(20, 20)
-script = ExtResource("2_qklsg")
-grabber = NodePath("../../Grabber")
-grabberRigidBody = NodePath("../../Grabber")
-house = NodePath("..")
-pinJoint = NodePath("../PinJoint2D")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="House"]
-node_a = NodePath("../../Grabber")
-node_b = NodePath("../../Grabber")
-softness = 0.4
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="House/PinJoint2D"]
-mesh = SubResource("QuadMesh_q2v6s")
 
 [node name="Roof" type="Area2D" parent="House"]
 position = Vector2(-1, 12)
@@ -150,8 +138,34 @@ shape = SubResource("RectangleShape2D_ulhkr")
 [node name="WinConditionTimer" type="Timer" parent="."]
 wait_time = 1.5
 
-[connection signal="button_down" from="House/Button" to="House/Button" method="_on_button_down"]
-[connection signal="button_up" from="House/Button" to="House/Button" method="_on_button_up"]
+[node name="RayCast2D" type="RayCast2D" parent="." node_paths=PackedStringArray("grabberRigidBody", "pinJoint")]
+target_position = Vector2(0, 1)
+hit_from_inside = true
+script = ExtResource("2_qklsg")
+grabber = NodePath("../Grabber")
+grabberRigidBody = NodePath("../Grabber")
+pinJoint = NodePath("../PinJoint2D")
+
+[node name="Decor" type="RigidBody2D" parent="."]
+position = Vector2(124, 534)
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor"]
+texture = ExtResource("5_p1ago")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6dttm")
+
+[node name="Decor2" type="RigidBody2D" parent="."]
+position = Vector2(281, 538)
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor2"]
+texture = ExtResource("5_p1ago")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor2"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6dttm")
+
 [connection signal="area_entered" from="WinCondition" to="." method="_on_win_condition_area_entered"]
 [connection signal="area_exited" from="WinCondition" to="." method="_on_win_condition_area_exited"]
 [connection signal="timeout" from="WinConditionTimer" to="." method="_on_win_condition_timer_timeout"]

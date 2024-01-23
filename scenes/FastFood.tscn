@@ -5,11 +5,11 @@
 [ext_resource type="Script" path="res://scenes/Grabber.gd" id="3_6gmmi"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="4_3wr3p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gohya"]
-size = Vector2(7.4, 7.1)
-
 [sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
 size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gohya"]
+size = Vector2(7.4, 7.1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
 size = Vector2(1186, 242)
@@ -28,6 +28,15 @@ size = Vector2(6, 6)
 position = Vector2(0, 1)
 script = ExtResource("1_4pga6")
 
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(569, 649)
+node_a = NodePath("../Grabber")
+node_b = NodePath("../Grabber")
+softness = 0.4
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="PinJoint2D"]
+mesh = SubResource("QuadMesh_q2v6s")
+
 [node name="Burger" type="RigidBody2D" parent="."]
 position = Vector2(569, 649)
 mass = 2.0
@@ -44,31 +53,6 @@ texture = ExtResource("2_2rcli")
 position = Vector2(-63, -64.5)
 scale = Vector2(10, 10)
 shape = SubResource("RectangleShape2D_gohya")
-
-[node name="Button" type="Button" parent="Burger" node_paths=PackedStringArray("grabberRigidBody", "pinJoint")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -103.0
-offset_top = -103.0
-offset_right = -95.0
-offset_bottom = -95.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(10, 10)
-script = ExtResource("3_6gmmi")
-grabber = NodePath("../../Grabber")
-grabberRigidBody = NodePath("../../Grabber")
-house = NodePath("..")
-pinJoint = NodePath("../PinJoint2D")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Burger"]
-node_a = NodePath("../../Grabber")
-node_b = NodePath("../../Grabber")
-softness = 0.4
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Burger/PinJoint2D"]
-mesh = SubResource("QuadMesh_q2v6s")
 
 [node name="Map" type="StaticBody2D" parent="."]
 
@@ -120,6 +104,12 @@ text = "Speed
 wait_time = 0.6
 autostart = true
 
-[connection signal="button_down" from="Burger/Button" to="Burger/Button" method="_on_button_down"]
-[connection signal="button_up" from="Burger/Button" to="Burger/Button" method="_on_button_up"]
+[node name="RayCast2D" type="RayCast2D" parent="." node_paths=PackedStringArray("grabberRigidBody", "pinJoint")]
+target_position = Vector2(0, 1)
+hit_from_inside = true
+script = ExtResource("3_6gmmi")
+grabber = NodePath("../Grabber")
+grabberRigidBody = NodePath("../Grabber")
+pinJoint = NodePath("../PinJoint2D")
+
 [connection signal="timeout" from="SpeedometerUpdateTimer" to="." method="_on_speedometer_update_timer_timeout"]
