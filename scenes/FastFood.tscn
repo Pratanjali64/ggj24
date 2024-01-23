@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=3 uid="uid://csykklkmqo167"]
+
+[ext_resource type="Script" path="res://scenes/FastFood.gd" id="1_4pga6"]
+[ext_resource type="Texture2D" uid="uid://d4alfgc0702s" path="res://textures/temp_burger.png" id="2_2rcli"]
+[ext_resource type="Script" path="res://scenes/Grabber.gd" id="3_6gmmi"]
+[ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="4_3wr3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gohya"]
+size = Vector2(7.4, 7.1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
+size = Vector2(1186, 242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n50nf"]
+size = Vector2(394, 1152)
+
+[sub_resource type="QuadMesh" id="QuadMesh_do4v0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_av1we"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_qe0j7"]
+size = Vector2(6, 6)
+
+[node name="FastFood" type="Node2D"]
+position = Vector2(0, 1)
+script = ExtResource("1_4pga6")
+
+[node name="Burger" type="RigidBody2D" parent="."]
+position = Vector2(569, 649)
+mass = 2.0
+sleeping = true
+linear_damp = 1.0
+angular_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger"]
+position = Vector2(-62.4, -64.2874)
+scale = Vector2(0.56875, 0.535741)
+texture = ExtResource("2_2rcli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger"]
+position = Vector2(-63, -64.5)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_gohya")
+
+[node name="Button" type="Button" parent="Burger" node_paths=PackedStringArray("grabberRigidBody", "pinJoint")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -103.0
+offset_top = -103.0
+offset_right = -95.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+script = ExtResource("3_6gmmi")
+grabber = NodePath("../../Grabber")
+grabberRigidBody = NodePath("../../Grabber")
+house = NodePath("..")
+pinJoint = NodePath("../PinJoint2D")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Burger"]
+node_a = NodePath("../../Grabber")
+node_b = NodePath("../../Grabber")
+softness = 0.4
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Burger/PinJoint2D"]
+mesh = SubResource("QuadMesh_q2v6s")
+
+[node name="Map" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map"]
+position = Vector2(583, -111)
+shape = SubResource("RectangleShape2D_7550a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map"]
+position = Vector2(588, 743)
+shape = SubResource("RectangleShape2D_7550a")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map"]
+position = Vector2(-186, 330)
+shape = SubResource("RectangleShape2D_n50nf")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Map"]
+position = Vector2(1351, 314)
+shape = SubResource("RectangleShape2D_n50nf")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Map"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(615, 698)
+scale = Vector2(1432.5, 152)
+mesh = SubResource("QuadMesh_do4v0")
+texture = ExtResource("4_3wr3p")
+
+[node name="Grabber" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+can_sleep = false
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grabber"]
+shape = SubResource("CircleShape2D_av1we")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Grabber"]
+mesh = SubResource("QuadMesh_qe0j7")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 34.0
+offset_top = 32.0
+offset_right = 74.0
+offset_bottom = 55.0
+text = "Speed
+"
+
+[connection signal="button_down" from="Burger/Button" to="Burger/Button" method="_on_button_down"]
+[connection signal="button_up" from="Burger/Button" to="Burger/Button" method="_on_button_up"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var timer: Timer = $WinConditionTimer
+@onready var timer: Timer = $Timer
 
 func _on_win_condition_area_entered(area):
 	timer.start()

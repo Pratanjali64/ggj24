@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://goxl8jxij1fe"]
 
-[ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_phx4t"]
+[ext_resource type="PackedScene" uid="uid://csykklkmqo167" path="res://scenes/FastFood.tscn" id="1_4afb6"]
 
 [node name="Main" type="Node2D"]
 
-[node name="HouseFlipper" parent="." instance=ExtResource("1_phx4t")]
+[node name="FastFood" parent="." instance=ExtResource("1_4afb6")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
