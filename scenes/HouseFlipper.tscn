@@ -1,0 +1,157 @@
+[gd_scene load_steps=16 format=3 uid="uid://cao133ey23fvu"]
+
+[ext_resource type="Script" path="res://scenes/HouseFlipper.gd" id="1_h0x04"]
+[ext_resource type="Texture2D" uid="uid://c873ebj7jtks6" path="res://textures/temp_house.png" id="1_ijoo4"]
+[ext_resource type="Script" path="res://scenes/Grabber.gd" id="2_qklsg"]
+[ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="3_x55vs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gohya"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4b458"]
+size = Vector2(196, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
+size = Vector2(1186, 242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n50nf"]
+size = Vector2(394, 1152)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jalmr"]
+radius = 50.0
+height = 200.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_do4v0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4mfsq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_av1we"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_qe0j7"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulhkr"]
+size = Vector2(2000, 100)
+
+[node name="HouseFlipper" type="Node2D"]
+script = ExtResource("1_h0x04")
+
+[node name="House" type="RigidBody2D" parent="."]
+position = Vector2(569, 522)
+mass = 10.0
+sleeping = true
+linear_damp = 1.0
+angular_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="House"]
+position = Vector2(1.2, -0.0750189)
+scale = Vector2(1.5625, 1.53906)
+texture = ExtResource("1_ijoo4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House"]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_gohya")
+
+[node name="Button" type="Button" parent="House" node_paths=PackedStringArray("grabberRigidBody", "pinJoint")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -98.0
+offset_right = -90.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(20, 20)
+script = ExtResource("2_qklsg")
+grabber = NodePath("../../Grabber")
+grabberRigidBody = NodePath("../../Grabber")
+house = NodePath("..")
+pinJoint = NodePath("../PinJoint2D")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="House"]
+node_a = NodePath("../../Grabber")
+node_b = NodePath("../../Grabber")
+softness = 1.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="House/PinJoint2D"]
+mesh = SubResource("QuadMesh_q2v6s")
+
+[node name="Roof" type="Area2D" parent="House"]
+position = Vector2(-1, 12)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Roof"]
+position = Vector2(1, -92)
+shape = SubResource("RectangleShape2D_4b458")
+
+[node name="Map" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map"]
+position = Vector2(583, -111)
+shape = SubResource("RectangleShape2D_7550a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map"]
+position = Vector2(588, 743)
+shape = SubResource("RectangleShape2D_7550a")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map"]
+position = Vector2(-186, 330)
+shape = SubResource("RectangleShape2D_n50nf")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Map"]
+position = Vector2(1351, 314)
+shape = SubResource("RectangleShape2D_n50nf")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map"]
+position = Vector2(980, 619)
+shape = SubResource("CapsuleShape2D_jalmr")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Map"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(615, 698)
+scale = Vector2(1432.5, 152)
+mesh = SubResource("QuadMesh_do4v0")
+texture = ExtResource("3_x55vs")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Map"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(981, 611)
+scale = Vector2(116.062, 96.75)
+mesh = SubResource("CapsuleMesh_4mfsq")
+texture = ExtResource("3_x55vs")
+
+[node name="Grabber" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+can_sleep = false
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grabber"]
+shape = SubResource("CircleShape2D_av1we")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Grabber"]
+mesh = SubResource("QuadMesh_qe0j7")
+
+[node name="WinCondition" type="Area2D" parent="."]
+position = Vector2(518, 619)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinCondition"]
+position = Vector2(128, 47)
+shape = SubResource("RectangleShape2D_ulhkr")
+
+[node name="WinConditionTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="button_down" from="House/Button" to="House/Button" method="_on_button_down"]
+[connection signal="button_up" from="House/Button" to="House/Button" method="_on_button_up"]
+[connection signal="area_entered" from="WinCondition" to="." method="_on_win_condition_area_entered"]
+[connection signal="area_exited" from="WinCondition" to="." method="_on_win_condition_area_exited"]
+[connection signal="timeout" from="WinConditionTimer" to="." method="_on_win_condition_timer_timeout"]
