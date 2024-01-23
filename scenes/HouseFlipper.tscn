@@ -40,7 +40,7 @@ script = ExtResource("1_h0x04")
 
 [node name="House" type="RigidBody2D" parent="."]
 position = Vector2(569, 522)
-mass = 10.0
+mass = 200.0
 sleeping = true
 linear_damp = 1.0
 angular_damp = 1.0
@@ -74,7 +74,7 @@ pinJoint = NodePath("../PinJoint2D")
 [node name="PinJoint2D" type="PinJoint2D" parent="House"]
 node_a = NodePath("../../Grabber")
 node_b = NodePath("../../Grabber")
-softness = 1.0
+softness = 0.4
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="House/PinJoint2D"]
 mesh = SubResource("QuadMesh_q2v6s")
