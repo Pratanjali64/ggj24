@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://goxl8jxij1fe"]
+[gd_scene load_steps=4 format=3 uid="uid://goxl8jxij1fe"]
 
 [ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_dh0aw"]
+[ext_resource type="AudioStream" uid="uid://b3tcycnilj6qy" path="res://audio/zany-song-idea-1.wav" id="2_o24wu"]
+[ext_resource type="AudioStream" uid="uid://brq065akqc0lp" path="res://audio/correct.wav" id="3_pxeso"]
 
 [node name="Main" type="Node2D"]
 
@@ -8,3 +10,10 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_o24wu")
+autoplay = true
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pxeso")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://csykklkmqo167"]
+[gd_scene load_steps=14 format=3 uid="uid://csykklkmqo167"]
 
 [ext_resource type="Script" path="res://scenes/FastFood.gd" id="1_4pga6"]
 [ext_resource type="Texture2D" uid="uid://d4alfgc0702s" path="res://textures/temp_burger.png" id="2_2rcli"]
@@ -19,6 +19,11 @@ size = Vector2(394, 1152)
 
 [sub_resource type="QuadMesh" id="QuadMesh_do4v0"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jdlt"]
+size = Vector2(329, 144)
+
+[sub_resource type="QuadMesh" id="QuadMesh_taywg"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_av1we"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_qe0j7"]
@@ -38,7 +43,7 @@ softness = 0.4
 mesh = SubResource("QuadMesh_q2v6s")
 
 [node name="Burger" type="RigidBody2D" parent="."]
-position = Vector2(569, 649)
+position = Vector2(256, 530)
 mass = 2.0
 sleeping = true
 linear_damp = 1.0
@@ -78,6 +83,18 @@ texture_repeat = 2
 position = Vector2(615, 698)
 scale = Vector2(1432.5, 152)
 mesh = SubResource("QuadMesh_do4v0")
+texture = ExtResource("4_3wr3p")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map"]
+position = Vector2(294, 575)
+shape = SubResource("RectangleShape2D_4jdlt")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Map"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(294.5, 574.5)
+scale = Vector2(331, 147)
+mesh = SubResource("QuadMesh_taywg")
 texture = ExtResource("4_3wr3p")
 
 [node name="Grabber" type="RigidBody2D" parent="."]

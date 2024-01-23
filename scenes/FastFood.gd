@@ -3,8 +3,12 @@ extends Node2D
 @onready var burger: RigidBody2D = $Burger
 @onready var speedLabel: Label = $Label
 @onready var button: Button = $Burger/Button
+var winSound: AudioStreamPlayer
 
 var win = false
+
+func _ready():
+	winSound = get_parent().find_child("WinSound");
 
 func _process(delta):
 	if !win:
