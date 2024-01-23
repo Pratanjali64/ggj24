@@ -1,12 +1,94 @@
-[gd_scene load_steps=4 format=3 uid="uid://goxl8jxij1fe"]
+[gd_scene load_steps=11 format=3 uid="uid://goxl8jxij1fe"]
 
+[ext_resource type="PackedScene" uid="uid://csykklkmqo167" path="res://scenes/FastFood.tscn" id="1_4afb6"]
 [ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_dh0aw"]
+[ext_resource type="Script" path="res://Main.gd" id="1_msjoe"]
 [ext_resource type="AudioStream" uid="uid://b3tcycnilj6qy" path="res://audio/zany-song-idea-1.wav" id="2_o24wu"]
 [ext_resource type="AudioStream" uid="uid://brq065akqc0lp" path="res://audio/correct.wav" id="3_pxeso"]
+[ext_resource type="PackedScene" uid="uid://u7p2gt3n8q2x" path="res://scenes/Credits.tscn" id="4_n51df"]
+[ext_resource type="Texture2D" uid="uid://cf8vtot5v01vw" path="res://textures/success.png" id="4_qj50i"]
+
+[sub_resource type="Animation" id="Animation_s3jff"]
+resource_name = "success"
+length = 2.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/WinSound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_pxeso")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"load_next_scene"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_7eeog"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4vvmf"]
+_data = {
+"RESET": SubResource("Animation_7eeog"),
+"success": SubResource("Animation_s3jff")
+}
 
 [node name="Main" type="Node2D"]
-
-[node name="HouseFlipper" parent="." instance=ExtResource("1_dh0aw")]
+script = ExtResource("1_msjoe")
+scenes = [ExtResource("1_dh0aw"), ExtResource("1_4afb6"), ExtResource("4_n51df")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -15,5 +97,19 @@ anchor_mode = 0
 stream = ExtResource("2_o24wu")
 autoplay = true
 
-[node name="WinSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_pxeso")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4vvmf")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer"]
+visible = false
+position = Vector2(591, 246)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("4_qj50i")
+
+[node name="WinSound" type="AudioStreamPlayer" parent="AnimationPlayer"]
+
+[node name="CurrentScene" type="Node2D" parent="."]
+
+[node name="HouseFlipper" parent="CurrentScene" instance=ExtResource("1_dh0aw")]

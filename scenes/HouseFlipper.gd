@@ -1,10 +1,10 @@
 extends Node2D
 
 @onready var timer: Timer = $WinConditionTimer
-var winSound: AudioStreamPlayer
+var winAnimation: AnimationPlayer
 
 func _ready():
-	winSound = get_parent().find_child("WinSound");
+	winAnimation = get_parent().get_parent().find_child("AnimationPlayer");
 
 func _on_win_condition_area_entered(area):
 	timer.start()
@@ -17,4 +17,4 @@ func _on_win_condition_area_exited(area):
 func _on_win_condition_timer_timeout():
 	print_debug("Winner!");
 	timer.stop()
-	winSound.play();
+	winAnimation.play("success");
