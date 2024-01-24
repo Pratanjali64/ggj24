@@ -4,7 +4,8 @@ extends RichTextLabel
 @onready var timer : Timer = $Timer;
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
-@export var dialogs : Array;
+@export var currentSceneParent: Node2D;
+var dialogs : Array;
 
 var timeExisted = 0
 var inlineIndex = 0;
@@ -12,10 +13,17 @@ var lineIndex = 0;
 
 var originalPos = Vector2(0, 0)
 
-func _ready():
+func reset(txt):
+	inlineIndex = 0;
+	lineIndex = 0;
+	timeExisted = 0;
+	dialogs = txt
 	text = "";
 	animationPlayer.play("textbox_shake");
 	timer.timeout.connect(_on_timer_timeout);
+
+func _ready():
+	reset(currentSceneParent.get_child(0).dialogs)
 	
 func _process(delta):
 	timeExisted += delta

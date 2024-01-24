@@ -5,6 +5,8 @@ extends Node2D
 @onready var button: Button = $Burger/Button
 var winAnimation: AnimationPlayer
 
+@export var dialogs: Array;
+
 var win = false
 
 func _ready():

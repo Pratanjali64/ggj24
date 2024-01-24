@@ -32,6 +32,7 @@ size = Vector2(6, 6)
 [node name="FastFood" type="Node2D"]
 position = Vector2(0, 1)
 script = ExtResource("1_4pga6")
+dialogs = ["Your new job is: ", "*FAST FOOD WORKER%"]
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2(569, 649)

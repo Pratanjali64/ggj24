@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var scenes = []
+@onready var chatbox: RichTextLabel = $MarginContainer/Panel/Control2/Label
 @onready var currentScene: Node2D = $CurrentScene
 var index = 0;
 
@@ -16,5 +17,6 @@ func _process(delta):
 func load_next_scene():
 	currentScene.get_child(0).queue_free()
 	index = index + 1;
-	currentScene.add_child(scenes[index].instantiate())
-	
+	var newScene = scenes[index].instantiate();
+	currentScene.add_child(newScene)
+	chatbox.reset(newScene.dialogs)

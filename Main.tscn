@@ -152,7 +152,6 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer"]
-visible = false
 position = Vector2(591, 246)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("4_qj50i")
@@ -210,7 +209,7 @@ offset_top = 28.0
 offset_right = 163.0
 offset_bottom = 68.0
 
-[node name="Label" type="RichTextLabel" parent="MarginContainer/Panel/Control2"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/Panel/Control2" node_paths=PackedStringArray("currentSceneParent")]
 layout_mode = 2
 offset_left = -1.0
 offset_top = -22.0
@@ -222,10 +221,10 @@ text = "Your new job is: [b]HOUSE FLIPPER[/b]
 "
 autowrap_mode = 2
 script = ExtResource("9_qd132")
-dialogs = ["Your new job is: ", "*HOUSE FLIPPER%"]
+currentSceneParent = NodePath("../../../../CurrentScene")
 
 [node name="Timer" type="Timer" parent="MarginContainer/Panel/Control2/Label"]
-wait_time = 0.06
+wait_time = 0.04
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/Panel/Control2/Label"]

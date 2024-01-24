@@ -3,6 +3,8 @@ extends Node2D
 @onready var timer: Timer = $WinConditionTimer
 var winAnimation: AnimationPlayer
 
+@export var dialogs : Array;
+
 func _ready():
 	winAnimation = get_parent().get_parent().find_child("AnimationPlayer");
 

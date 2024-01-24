@@ -41,6 +41,7 @@ size = Vector2(129, 128)
 
 [node name="HouseFlipper" type="Node2D"]
 script = ExtResource("1_h0x04")
+dialogs = ["Your new job is: ", "*HOUSE FLIPPER%"]
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2(569, 522)
