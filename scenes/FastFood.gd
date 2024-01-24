@@ -1,18 +1,29 @@
 extends Minigame
 
 @onready var burger: RigidBody2D = $Burger
-@onready var speedLabel: Label = $Label
+@onready var speedLabel: Label = $TV/Label
 @onready var button: Button = $Burger/Button
+@onready var timer: Timer = $SpeedometerUpdateTimer
 
 var win = false
 
+const orangeThreshold = 500;
+const redThreshold = 5000;
+
 func _process(delta):
 	if !win:
-		if burger.linear_velocity.length() > 5000:
-			speedLabel.text = str(int(burger.linear_velocity.length() / 100)) + "mph";
+		if burger.linear_velocity.length() > redThreshold:
+			timer.stop();
+			_on_speedometer_update_timer_timeout()
 			win = true;
 			winAnimation.play("success");
 
 
 func _on_speedometer_update_timer_timeout():
-	speedLabel.text = str(int(burger.linear_velocity.length() / 100)) + "mph";
+	speedLabel.text = "Order No. " + str(int(burger.linear_velocity.length() / 100));
+	if (burger.linear_velocity.length() > orangeThreshold):
+		speedLabel.modulate = Color.RED
+	if (burger.linear_velocity.length() > orangeThreshold):
+		speedLabel.modulate = Color.ORANGE
+	else:
+		speedLabel.modulate = Color.AQUAMARINE

@@ -357,8 +357,6 @@ texture = ExtResource("9_5cdcy")
 
 [node name="CurrentScene" type="Node2D" parent="."]
 
-[node name="Intro" parent="CurrentScene" instance=ExtResource("2_knjd3")]
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0

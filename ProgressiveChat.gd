@@ -23,9 +23,6 @@ func reset(newDialog, newBossTexture):
 	text = "";
 	animationPlayer.play("textbox_shake");
 	timer.timeout.connect(_on_timer_timeout);
-
-func _ready():
-	reset(currentSceneParent.get_child(0).dialogs, currentSceneParent.get_child(0).bossTexture)
 	
 func _process(delta):
 	timeExisted += delta
