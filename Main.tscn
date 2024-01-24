@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://goxl8jxij1fe"]
+[gd_scene load_steps=30 format=3 uid="uid://goxl8jxij1fe"]
 
 [ext_resource type="PackedScene" uid="uid://csykklkmqo167" path="res://scenes/FastFood.tscn" id="1_4afb6"]
 [ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_dh0aw"]
@@ -9,19 +9,33 @@
 [ext_resource type="Texture2D" uid="uid://cf8vtot5v01vw" path="res://textures/success.png" id="4_qj50i"]
 [ext_resource type="AudioStream" uid="uid://bx7iattcjk0p7" path="res://audio/Against_The_Grain30.wav" id="5_gtvcd"]
 [ext_resource type="Theme" uid="uid://bxbpwe053bko6" path="res://theme_ggj24.tres" id="8_cy6fp"]
+[ext_resource type="Texture2D" uid="uid://lnf8phn2wd6x" path="res://textures/failure.png" id="9_5cdcy"]
 [ext_resource type="Script" path="res://ProgressiveChat.gd" id="9_qd132"]
 [ext_resource type="Texture2D" uid="uid://c5byrwsql8c6j" path="res://textures/boss_houseflipper.png" id="9_y711h"]
 [ext_resource type="AudioStream" uid="uid://b3mnj8ufctcmm" path="res://audio/kenney_interface-sounds/Audio/back_004.ogg" id="10_6aeqm"]
+[ext_resource type="AudioStream" uid="uid://di50wd3ynpffh" path="res://audio/incorrect.wav" id="13_e5kgm"]
 
 [sub_resource type="Animation" id="Animation_7eeog"]
 resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Sprite2D:scale")
+tracks/0/path = NodePath("AnimationPlayer/Success:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Failure:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -49,7 +63,7 @@ tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer/Sprite2D:scale")
+tracks/1/path = NodePath("AnimationPlayer/Success:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -75,7 +89,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/Sprite2D:visible")
+tracks/3/path = NodePath("AnimationPlayer/Success:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -83,6 +97,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DayNightCycleAnimationPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"stop"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_lpv4u"]
@@ -103,9 +131,67 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_ud7c4"]
+resource_name = "failure"
+length = 2.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/WinSound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_e5kgm")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reload_current_scene"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Failure:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/Failure:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4vvmf"]
 _data = {
 "RESET": SubResource("Animation_7eeog"),
+"failure": SubResource("Animation_ud7c4"),
 "success": SubResource("Animation_s3jff"),
 "success_noflash": SubResource("Animation_lpv4u")
 }
@@ -155,6 +241,67 @@ _data = {
 "textbox_shake": SubResource("Animation_815bv")
 }
 
+[sub_resource type="Animation" id="Animation_dykid"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DayNightCycle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bl8gh"]
+resource_name = "day_cycle"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DayNightCycle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.680678]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["failure", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o74f4"]
+_data = {
+"RESET": SubResource("Animation_dykid"),
+"day_cycle": SubResource("Animation_bl8gh")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_1xlf0"]
+radius = 20.0
+height = 40.0
+
+[sub_resource type="Gradient" id="Gradient_sir0t"]
+colors = PackedColorArray(0.886275, 0.639216, 0, 1, 1, 0.835294, 0.545098, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ntbrd"]
+gradient = SubResource("Gradient_sir0t")
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_msjoe")
 scenes = [ExtResource("2_knjd3"), ExtResource("1_dh0aw"), ExtResource("1_4afb6"), ExtResource("4_n51df")]
@@ -171,10 +318,16 @@ libraries = {
 "": SubResource("AnimationLibrary_4vvmf")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer"]
+[node name="Success" type="Sprite2D" parent="AnimationPlayer"]
 position = Vector2(591, 246)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("4_qj50i")
+
+[node name="Failure" type="Sprite2D" parent="AnimationPlayer"]
+visible = false
+position = Vector2(591, 246)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("9_5cdcy")
 
 [node name="WinSound" type="AudioStreamPlayer" parent="AnimationPlayer"]
 
@@ -255,3 +408,19 @@ stream = SubResource("AudioStreamRandomizer_o8g5t")
 libraries = {
 "": SubResource("AnimationLibrary_sw65h")
 }
+
+[node name="DayNightCycleAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath(".")
+libraries = {
+"": SubResource("AnimationLibrary_o74f4")
+}
+
+[node name="DayNightCycle" type="Node2D" parent="."]
+position = Vector2(576, 2000)
+
+[node name="Sun" type="Node2D" parent="DayNightCycle"]
+position = Vector2(-617.22, -1747.65)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="DayNightCycle/Sun"]
+mesh = SubResource("SphereMesh_1xlf0")
+texture = SubResource("GradientTexture1D_ntbrd")

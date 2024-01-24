@@ -33,7 +33,7 @@ size = Vector2(6, 6)
 [node name="FastFood" type="Node2D"]
 position = Vector2(0, 1)
 script = ExtResource("1_4pga6")
-dialogs = ["Your new job is: ", "*FAST FOOD WORKER%"]
+dialogs = ["Your job today is: ", "*FAST FOOD WORKER%"]
 bossTexture = ExtResource("2_w314a")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]

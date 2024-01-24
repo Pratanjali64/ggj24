@@ -5,11 +5,11 @@
 
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_326pe")
-dialogs = ["Back again, huh? ", "I've got some new jobs even *YOU% won't be able to screw up. ", "Just follow the job description *EXACTLY%, and you'll be fine."]
+dialogs = ["Back again, huh? ", "@", "I've got some new jobs even *YOU% won't be able to screw up. ", "Just follow the job description *EXACTLY%. ", "If you put in an honest *DAY'S% work, they might even *REHIRE% you!", "@", "Ready?"]
 bossTexture = ExtResource("2_w7t3d")
 
 [node name="WinConditionTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 15.0
 autostart = true
 
 [connection signal="timeout" from="WinConditionTimer" to="." method="_on_win_condition_timer_timeout"]

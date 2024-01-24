@@ -41,6 +41,8 @@ func _on_timer_timeout() -> void:
 			text += "[b]"
 		elif (dialogEdited[inlineIndex] == "%"):
 			text += "[/b]"
+		elif (dialogEdited[inlineIndex] == "@"):
+			text = ""
 		else: 
 			text += dialogEdited[inlineIndex];
 
