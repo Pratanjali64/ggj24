@@ -209,7 +209,7 @@ offset_top = 28.0
 offset_right = 163.0
 offset_bottom = 68.0
 
-[node name="Label" type="RichTextLabel" parent="MarginContainer/Panel/Control2" node_paths=PackedStringArray("currentSceneParent")]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/Panel/Control2" node_paths=PackedStringArray("currentSceneParent", "bossSprite")]
 layout_mode = 2
 offset_left = -1.0
 offset_top = -22.0
@@ -222,6 +222,7 @@ text = "Your new job is: [b]HOUSE FLIPPER[/b]
 autowrap_mode = 2
 script = ExtResource("9_qd132")
 currentSceneParent = NodePath("../../../../CurrentScene")
+bossSprite = NodePath("../../Control/Panel/Sprite2D")
 
 [node name="Timer" type="Timer" parent="MarginContainer/Panel/Control2/Label"]
 wait_time = 0.04

@@ -19,4 +19,4 @@ func load_next_scene():
 	index = index + 1;
 	var newScene = scenes[index].instantiate();
 	currentScene.add_child(newScene)
-	chatbox.reset(newScene.dialogs)
+	chatbox.reset(newScene.dialogs, newScene.bossTexture)

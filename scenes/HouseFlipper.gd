@@ -1,9 +1,7 @@
-extends Node2D
+extends Minigame
 
 @onready var timer: Timer = $WinConditionTimer
 var winAnimation: AnimationPlayer
-
-@export var dialogs : Array;
 
 func _ready():
 	winAnimation = get_parent().get_parent().find_child("AnimationPlayer");
@@ -17,6 +15,5 @@ func _on_win_condition_area_exited(area):
 
 
 func _on_win_condition_timer_timeout():
-	print_debug("Winner!");
 	timer.stop()
 	winAnimation.play("success");

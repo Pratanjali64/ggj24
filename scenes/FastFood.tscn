@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://csykklkmqo167"]
+[gd_scene load_steps=15 format=3 uid="uid://csykklkmqo167"]
 
 [ext_resource type="Script" path="res://scenes/FastFood.gd" id="1_4pga6"]
 [ext_resource type="Texture2D" uid="uid://d4alfgc0702s" path="res://textures/temp_burger.png" id="2_2rcli"]
+[ext_resource type="Texture2D" uid="uid://8nc6f2ro5dod" path="res://textures/boss_fastfood.png" id="2_w314a"]
 [ext_resource type="Script" path="res://scenes/Grabber.gd" id="3_6gmmi"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="4_3wr3p"]
 
@@ -33,6 +34,7 @@ size = Vector2(6, 6)
 position = Vector2(0, 1)
 script = ExtResource("1_4pga6")
 dialogs = ["Your new job is: ", "*FAST FOOD WORKER%"]
+bossTexture = ExtResource("2_w314a")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2(569, 649)

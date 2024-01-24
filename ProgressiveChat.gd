@@ -5,6 +5,7 @@ extends RichTextLabel
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 @export var currentSceneParent: Node2D;
+@export var bossSprite: Sprite2D;
 var dialogs : Array;
 
 var timeExisted = 0
@@ -13,17 +14,18 @@ var lineIndex = 0;
 
 var originalPos = Vector2(0, 0)
 
-func reset(txt):
+func reset(newDialog, newBossTexture):
 	inlineIndex = 0;
 	lineIndex = 0;
 	timeExisted = 0;
-	dialogs = txt
+	dialogs = newDialog
+	bossSprite.texture = newBossTexture;
 	text = "";
 	animationPlayer.play("textbox_shake");
 	timer.timeout.connect(_on_timer_timeout);
 
 func _ready():
-	reset(currentSceneParent.get_child(0).dialogs)
+	reset(currentSceneParent.get_child(0).dialogs, currentSceneParent.get_child(0).bossTexture)
 	
 func _process(delta):
 	timeExisted += delta

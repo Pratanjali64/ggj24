@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cao133ey23fvu"]
+[gd_scene load_steps=19 format=3 uid="uid://cao133ey23fvu"]
 
 [ext_resource type="Script" path="res://scenes/HouseFlipper.gd" id="1_h0x04"]
 [ext_resource type="Texture2D" uid="uid://c873ebj7jtks6" path="res://textures/temp_house.png" id="1_ijoo4"]
+[ext_resource type="Texture2D" uid="uid://c5byrwsql8c6j" path="res://textures/boss_houseflipper.png" id="2_j6qc4"]
 [ext_resource type="Script" path="res://scenes/Grabber.gd" id="2_qklsg"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="3_x55vs"]
 [ext_resource type="Texture2D" uid="uid://fh8amwobsdpo" path="res://textures/temp_furniture.png" id="5_p1ago"]
@@ -42,6 +43,7 @@ size = Vector2(129, 128)
 [node name="HouseFlipper" type="Node2D"]
 script = ExtResource("1_h0x04")
 dialogs = ["Your new job is: ", "*HOUSE FLIPPER%"]
+bossTexture = ExtResource("2_j6qc4")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2(569, 522)

@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://u7p2gt3n8q2x"]
+[gd_scene load_steps=3 format=3 uid="uid://u7p2gt3n8q2x"]
+
+[ext_resource type="Script" path="res://scenes/Credits.gd" id="1_lirjk"]
+[ext_resource type="Texture2D" uid="uid://c5byrwsql8c6j" path="res://textures/boss_houseflipper.png" id="2_0sfms"]
 
 [node name="Credits" type="Node2D"]
-
-[node name="Label" type="Label" parent="."]
-offset_right = 704.0
-offset_bottom = 272.0
-text = "Game Over
-"
+script = ExtResource("1_lirjk")
+dialogs = ["You suck at ", "*EVERYTHING!!!!!%"]
+bossTexture = ExtResource("2_0sfms")

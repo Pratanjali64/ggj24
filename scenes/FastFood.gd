@@ -1,11 +1,9 @@
-extends Node2D
+extends Minigame
 
 @onready var burger: RigidBody2D = $Burger
 @onready var speedLabel: Label = $Label
 @onready var button: Button = $Burger/Button
 var winAnimation: AnimationPlayer
-
-@export var dialogs: Array;
 
 var win = false
 
