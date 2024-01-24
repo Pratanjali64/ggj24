@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvegigxso3pmx"]
+
+[ext_resource type="Script" path="res://scenes/Waiter.gd" id="1_ht704"]
+[ext_resource type="Texture2D" uid="uid://bp57g1tqro18n" path="res://textures/boss_waiter.png" id="2_326av"]
+[ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="4_drsix"]
+[ext_resource type="Texture2D" uid="uid://u6b6inerk7io" path="res://textures/backgrounds/Barbieri_-_ViaSophia25668.jpg" id="4_kqyph"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
+size = Vector2(1186, 242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n50nf"]
+size = Vector2(394, 1152)
+
+[sub_resource type="QuadMesh" id="QuadMesh_do4v0"]
+
+[node name="Waiter" type="Node2D"]
+position = Vector2(0, 1)
+script = ExtResource("1_ht704")
+dialogs = ["Your job today is: ", "*WAITER%"]
+bossTexture = ExtResource("2_326av")
+
+[node name="Map" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map"]
+position = Vector2(583, -111)
+shape = SubResource("RectangleShape2D_7550a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map"]
+position = Vector2(588, 743)
+shape = SubResource("RectangleShape2D_7550a")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map"]
+position = Vector2(-186, 330)
+shape = SubResource("RectangleShape2D_n50nf")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Map"]
+position = Vector2(1351, 314)
+shape = SubResource("RectangleShape2D_n50nf")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Map"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(615, 698)
+scale = Vector2(1432.5, 152)
+mesh = SubResource("QuadMesh_do4v0")
+texture = ExtResource("4_drsix")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(577.5, 324.5)
+scale = Vector2(0.500431, 0.3285)
+texture = ExtResource("4_kqyph")
+
+[node name="WinConditionTimer" type="Timer" parent="."]
+wait_time = 14.0
+autostart = true
+
+[connection signal="timeout" from="WinConditionTimer" to="." method="_on_win_condition_timer_timeout"]

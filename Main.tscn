@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://goxl8jxij1fe"]
+[gd_scene load_steps=32 format=3 uid="uid://goxl8jxij1fe"]
 
 [ext_resource type="PackedScene" uid="uid://csykklkmqo167" path="res://scenes/FastFood.tscn" id="1_4afb6"]
 [ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_dh0aw"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://brq065akqc0lp" path="res://audio/correct.wav" id="3_pxeso"]
 [ext_resource type="PackedScene" uid="uid://u7p2gt3n8q2x" path="res://scenes/Credits.tscn" id="4_n51df"]
 [ext_resource type="Texture2D" uid="uid://cf8vtot5v01vw" path="res://textures/success.png" id="4_qj50i"]
+[ext_resource type="PackedScene" uid="uid://dvegigxso3pmx" path="res://scenes/Waiter.tscn" id="5_axdxl"]
 [ext_resource type="AudioStream" uid="uid://bx7iattcjk0p7" path="res://audio/Against_The_Grain30.wav" id="5_gtvcd"]
 [ext_resource type="Theme" uid="uid://bxbpwe053bko6" path="res://theme_ggj24.tres" id="8_cy6fp"]
 [ext_resource type="Texture2D" uid="uid://lnf8phn2wd6x" path="res://textures/failure.png" id="9_5cdcy"]
@@ -43,6 +44,63 @@ tracks/1/keys = {
 "values": [Vector2(1e-05, 1e-05)]
 }
 
+[sub_resource type="Animation" id="Animation_ud7c4"]
+resource_name = "failure"
+length = 2.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/WinSound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_e5kgm")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/0/use_blend = true
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reload_current_scene"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Failure:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/Failure:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_s3jff"]
 resource_name = "success"
 length = 2.0
@@ -58,7 +116,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("3_pxeso")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.1)
 }
 tracks/0/use_blend = true
 tracks/1/type = "value"
@@ -130,63 +188,6 @@ tracks/0/keys = {
 "args": [],
 "method": &"load_next_scene"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_ud7c4"]
-resource_name = "failure"
-length = 2.0
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/WinSound")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("13_e5kgm")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/0/use_blend = true
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"reload_current_scene"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer/Failure:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/Failure:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4vvmf"]
@@ -328,7 +329,7 @@ gradient = SubResource("Gradient_sir0t")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_msjoe")
-scenes = [ExtResource("2_knjd3"), ExtResource("1_dh0aw"), ExtResource("1_4afb6"), ExtResource("4_n51df")]
+scenes = [ExtResource("2_knjd3"), ExtResource("1_dh0aw"), ExtResource("1_4afb6"), ExtResource("5_axdxl"), ExtResource("4_n51df")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -348,7 +349,6 @@ scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("4_qj50i")
 
 [node name="Failure" type="Sprite2D" parent="AnimationPlayer"]
-visible = false
 position = Vector2(591, 246)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("9_5cdcy")
