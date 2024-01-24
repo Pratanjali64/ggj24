@@ -23,7 +23,7 @@ func _on_speedometer_update_timer_timeout():
 	speedLabel.text = "Order No. " + str(int(burger.linear_velocity.length() / 100));
 	if (burger.linear_velocity.length() > orangeThreshold):
 		speedLabel.modulate = Color.RED
-	if (burger.linear_velocity.length() > orangeThreshold):
+	if (burger.linear_velocity.length() >= redThreshold):
 		speedLabel.modulate = Color.ORANGE
 	else:
 		speedLabel.modulate = Color.AQUAMARINE
