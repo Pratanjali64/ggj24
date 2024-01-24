@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cao133ey23fvu"]
+[gd_scene load_steps=20 format=3 uid="uid://cao133ey23fvu"]
 
 [ext_resource type="Script" path="res://scenes/HouseFlipper.gd" id="1_h0x04"]
 [ext_resource type="Texture2D" uid="uid://c873ebj7jtks6" path="res://textures/temp_house.png" id="1_ijoo4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/Grabber.gd" id="2_qklsg"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="3_x55vs"]
 [ext_resource type="Texture2D" uid="uid://cxjwrmvan8wfw" path="res://textures/couch.png" id="6_qlf88"]
+[ext_resource type="Texture2D" uid="uid://d0ba0dro8l5is" path="res://textures/backgrounds/Skyscrapers_of_Shinjuku_2009_January_(revised).jpg" id="7_tka8i"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
 size = Vector2(10, 10)
@@ -162,6 +163,12 @@ texture = ExtResource("6_qlf88")
 position = Vector2(-1, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8cd2j")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(569, 345)
+scale = Vector2(1.42941, 1.48602)
+texture = ExtResource("7_tka8i")
 
 [connection signal="area_entered" from="WinCondition" to="." method="_on_win_condition_area_entered"]
 [connection signal="area_exited" from="WinCondition" to="." method="_on_win_condition_area_exited"]

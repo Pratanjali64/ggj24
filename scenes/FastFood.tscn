@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://csykklkmqo167"]
+[gd_scene load_steps=23 format=3 uid="uid://csykklkmqo167"]
 
 [ext_resource type="Script" path="res://scenes/FastFood.gd" id="1_4pga6"]
 [ext_resource type="Texture2D" uid="uid://d4alfgc0702s" path="res://textures/temp_burger.png" id="2_2rcli"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/TV.gd" id="6_ad3dj"]
 [ext_resource type="Texture2D" uid="uid://c8d14fnamqvvj" path="res://textures/tv.png" id="7_yarxi"]
 [ext_resource type="Texture2D" uid="uid://diclerka6tpc5" path="res://textures/plug.png" id="9_ddgrr"]
+[ext_resource type="Texture2D" uid="uid://bgg4560lgodgp" path="res://textures/backgrounds/Küche.JPG" id="10_1gtgm"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
 size = Vector2(10, 10)
@@ -196,5 +197,11 @@ texture = ExtResource("9_ddgrr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TVPlug"]
 shape = SubResource("RectangleShape2D_b17uh")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(581.5, 319.5)
+scale = Vector2(0.574707, 0.438151)
+texture = ExtResource("10_1gtgm")
 
 [connection signal="timeout" from="SpeedometerUpdateTimer" to="." method="_on_speedometer_update_timer_timeout"]

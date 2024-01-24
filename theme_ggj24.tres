@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://c88qgascv10d8" path="res://fonts/OstrichSans-Medium.otf" id="2_kml3k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4hat"]
-bg_color = Color(0.72549, 0.72549, 0.72549, 0.368627)
+bg_color = Color(0.403922, 0.466667, 0.486275, 0.901961)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2

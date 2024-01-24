@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://eofs7isfmbud"]
+[gd_scene load_steps=4 format=3 uid="uid://eofs7isfmbud"]
 
 [ext_resource type="Script" path="res://Intro.gd" id="1_326pe"]
 [ext_resource type="Texture2D" uid="uid://cdhj8yx72kbko" path="res://textures/boss_generic.png" id="2_w7t3d"]
+[ext_resource type="Texture2D" uid="uid://bd2psg5782gxi" path="res://textures/backgrounds/1920px-Channel_1_Israel_DSC0021.jpg" id="3_7wqmq"]
 
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_326pe")
@@ -11,5 +12,11 @@ bossTexture = ExtResource("2_w7t3d")
 [node name="WinConditionTimer" type="Timer" parent="."]
 wait_time = 15.0
 autostart = true
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(586.141, 330.766)
+scale = Vector2(0.63527, 0.478103)
+texture = ExtResource("3_7wqmq")
 
 [connection signal="timeout" from="WinConditionTimer" to="." method="_on_win_condition_timer_timeout"]

@@ -22,3 +22,7 @@ https://kenney.nl/assets/ui-audio  	Creative Commons CC0
 https://kenney.nl/assets/digital-audio 	Creative Commons CC0
 https://kenney.nl/assets/pattern-pack-pixel 	Creative Commons CC0
 https://github.com/theleagueof/ostrich-sans  SIL Open Font License 1.1 
+
+https://en.wikipedia.org/wiki/Cooking#/media/File:K%C3%BCche.JPG Public Domain
+https://en.wikipedia.org/wiki/Office#/media/File:Channel_1_Israel_DSC0021.jpg CC BY-SA 4.0
+https://en.wikipedia.org/wiki/Neighbourhood#/media/File:Skyscrapers_of_Shinjuku_2009_January_(revised).jpg CC BY-SA 3.0
