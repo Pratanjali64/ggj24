@@ -21,3 +21,4 @@ https://kenney.nl/assets/casino-audio  	Creative Commons CC0
 https://kenney.nl/assets/ui-audio  	Creative Commons CC0
 https://kenney.nl/assets/digital-audio 	Creative Commons CC0
 https://kenney.nl/assets/pattern-pack-pixel 	Creative Commons CC0
+https://github.com/theleagueof/ostrich-sans  SIL Open Font License 1.1 

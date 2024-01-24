@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://goxl8jxij1fe"]
+[gd_scene load_steps=19 format=3 uid="uid://goxl8jxij1fe"]
 
 [ext_resource type="PackedScene" uid="uid://csykklkmqo167" path="res://scenes/FastFood.tscn" id="1_4afb6"]
 [ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_dh0aw"]
@@ -7,6 +7,25 @@
 [ext_resource type="AudioStream" uid="uid://brq065akqc0lp" path="res://audio/correct.wav" id="3_pxeso"]
 [ext_resource type="PackedScene" uid="uid://u7p2gt3n8q2x" path="res://scenes/Credits.tscn" id="4_n51df"]
 [ext_resource type="Texture2D" uid="uid://cf8vtot5v01vw" path="res://textures/success.png" id="4_qj50i"]
+[ext_resource type="Theme" uid="uid://bxbpwe053bko6" path="res://theme_ggj24.tres" id="8_cy6fp"]
+[ext_resource type="Script" path="res://ProgressiveChat.gd" id="9_qd132"]
+[ext_resource type="Texture2D" uid="uid://c5byrwsql8c6j" path="res://textures/boss_houseflipper.png" id="9_y711h"]
+[ext_resource type="AudioStream" uid="uid://b3mnj8ufctcmm" path="res://audio/kenney_interface-sounds/Audio/back_004.ogg" id="10_6aeqm"]
+
+[sub_resource type="Animation" id="Animation_7eeog"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
 
 [sub_resource type="Animation" id="Animation_s3jff"]
 resource_name = "success"
@@ -65,25 +84,55 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_7eeog"]
-resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4vvmf"]
 _data = {
 "RESET": SubResource("Animation_7eeog"),
 "success": SubResource("Animation_s3jff")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o8g5t"]
+random_pitch = 2.0
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("10_6aeqm")
+stream_0/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_4xuwh"]
+resource_name = "RESET"
+
+[sub_resource type="Animation" id="Animation_815bv"]
+resource_name = "textbox_shake"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Control:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Control:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.0698132, 0.0, 0.0698132, 0.0, -0.0698132, 0.0, 0.0698132, 0.0, -0.0698132, 0.0, 0.0698132]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sw65h"]
+_data = {
+"RESET": SubResource("Animation_4xuwh"),
+"textbox_shake": SubResource("Animation_815bv")
 }
 
 [node name="Main" type="Node2D"]
@@ -113,3 +162,76 @@ texture = ExtResource("4_qj50i")
 [node name="CurrentScene" type="Node2D" parent="."]
 
 [node name="HouseFlipper" parent="CurrentScene" instance=ExtResource("1_dh0aw")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 36.0
+offset_top = 30.0
+offset_right = 1104.0
+offset_bottom = 158.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_cy6fp")
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/Panel"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 49.0
+offset_top = 50.0
+offset_right = 1085.0
+offset_bottom = 146.0
+
+[node name="Panel" type="Panel" parent="MarginContainer/Panel/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -74.0
+offset_right = 22.0
+offset_bottom = -26.0
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+theme = ExtResource("8_cy6fp")
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Panel/Control/Panel"]
+position = Vector2(31, 21)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("9_y711h")
+
+[node name="Control2" type="Control" parent="MarginContainer/Panel"]
+anchors_preset = 0
+offset_left = 123.0
+offset_top = 28.0
+offset_right = 163.0
+offset_bottom = 68.0
+
+[node name="Label" type="RichTextLabel" parent="MarginContainer/Panel/Control2"]
+layout_mode = 2
+offset_left = -1.0
+offset_top = -22.0
+offset_right = 925.0
+offset_bottom = 58.0
+theme = ExtResource("8_cy6fp")
+bbcode_enabled = true
+text = "Your new job is: [b]HOUSE FLIPPER[/b]
+"
+autowrap_mode = 2
+script = ExtResource("9_qd132")
+dialogs = ["Your new job is: ", "*HOUSE FLIPPER%"]
+
+[node name="Timer" type="Timer" parent="MarginContainer/Panel/Control2/Label"]
+wait_time = 0.06
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/Panel/Control2/Label"]
+stream = SubResource("AudioStreamRandomizer_o8g5t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/Panel/Control2/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_sw65h")
+}
