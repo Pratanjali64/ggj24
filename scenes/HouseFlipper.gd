@@ -1,10 +1,6 @@
 extends Minigame
 
 @onready var timer: Timer = $WinConditionTimer
-var winAnimation: AnimationPlayer
-
-func _ready():
-	winAnimation = get_parent().get_parent().find_child("AnimationPlayer");
 
 func _on_win_condition_area_entered(area):
 	timer.start()

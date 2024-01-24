@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://goxl8jxij1fe"]
+[gd_scene load_steps=21 format=3 uid="uid://goxl8jxij1fe"]
 
 [ext_resource type="PackedScene" uid="uid://csykklkmqo167" path="res://scenes/FastFood.tscn" id="1_4afb6"]
 [ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_dh0aw"]
 [ext_resource type="Script" path="res://Main.gd" id="1_msjoe"]
+[ext_resource type="PackedScene" uid="uid://eofs7isfmbud" path="res://scenes/intro.tscn" id="2_knjd3"]
 [ext_resource type="AudioStream" uid="uid://brq065akqc0lp" path="res://audio/correct.wav" id="3_pxeso"]
 [ext_resource type="PackedScene" uid="uid://u7p2gt3n8q2x" path="res://scenes/Credits.tscn" id="4_n51df"]
 [ext_resource type="Texture2D" uid="uid://cf8vtot5v01vw" path="res://textures/success.png" id="4_qj50i"]
@@ -84,10 +85,29 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_lpv4u"]
+resource_name = "success_noflash"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"load_next_scene"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4vvmf"]
 _data = {
 "RESET": SubResource("Animation_7eeog"),
-"success": SubResource("Animation_s3jff")
+"success": SubResource("Animation_s3jff"),
+"success_noflash": SubResource("Animation_lpv4u")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o8g5t"]
@@ -137,7 +157,7 @@ _data = {
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_msjoe")
-scenes = [ExtResource("1_dh0aw"), ExtResource("1_4afb6"), ExtResource("4_n51df")]
+scenes = [ExtResource("2_knjd3"), ExtResource("1_dh0aw"), ExtResource("1_4afb6"), ExtResource("4_n51df")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -160,7 +180,7 @@ texture = ExtResource("4_qj50i")
 
 [node name="CurrentScene" type="Node2D" parent="."]
 
-[node name="HouseFlipper" parent="CurrentScene" instance=ExtResource("1_dh0aw")]
+[node name="Intro" parent="CurrentScene" instance=ExtResource("2_knjd3")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
