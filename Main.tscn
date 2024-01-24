@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://csykklkmqo167" path="res://scenes/FastFood.tscn" id="1_4afb6"]
 [ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_dh0aw"]
 [ext_resource type="Script" path="res://Main.gd" id="1_msjoe"]
-[ext_resource type="AudioStream" uid="uid://b3tcycnilj6qy" path="res://audio/zany-song-idea-1.wav" id="2_o24wu"]
 [ext_resource type="AudioStream" uid="uid://brq065akqc0lp" path="res://audio/correct.wav" id="3_pxeso"]
 [ext_resource type="PackedScene" uid="uid://u7p2gt3n8q2x" path="res://scenes/Credits.tscn" id="4_n51df"]
 [ext_resource type="Texture2D" uid="uid://cf8vtot5v01vw" path="res://textures/success.png" id="4_qj50i"]
+[ext_resource type="AudioStream" uid="uid://bx7iattcjk0p7" path="res://audio/Against_The_Grain30.wav" id="5_gtvcd"]
 [ext_resource type="Theme" uid="uid://bxbpwe053bko6" path="res://theme_ggj24.tres" id="8_cy6fp"]
 [ext_resource type="Script" path="res://ProgressiveChat.gd" id="9_qd132"]
 [ext_resource type="Texture2D" uid="uid://c5byrwsql8c6j" path="res://textures/boss_houseflipper.png" id="9_y711h"]
@@ -143,7 +143,7 @@ scenes = [ExtResource("1_dh0aw"), ExtResource("1_4afb6"), ExtResource("4_n51df")
 anchor_mode = 0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_o24wu")
+stream = ExtResource("5_gtvcd")
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
