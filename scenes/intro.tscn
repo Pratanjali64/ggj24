@@ -5,7 +5,7 @@
 
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_326pe")
-dialogs = ["Back again, huh? ", "@", "I've got some new jobs even *YOU% won't be able to screw up. ", "Just follow the job description *EXACTLY%. ", "If you put in an honest *DAY'S% work, they might even *REHIRE% you!", "@", "Ready?"]
+dialogs = ["Back again, huh? ", "", "@I've got some new jobs even *YOU% won't be able to *SCREW UP%. ", "", "@Just follow the job description *EXACTLY%. ", "Put in an honest *DAY%'s work and they'll probably *REHIRE% you!", "", "@Ready?"]
 bossTexture = ExtResource("2_w7t3d")
 
 [node name="WinConditionTimer" type="Timer" parent="."]

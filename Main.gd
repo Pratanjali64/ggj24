@@ -19,4 +19,5 @@ func load_next_scene():
 	var newScene = scenes[index].instantiate();
 	currentScene.add_child(newScene)
 	chatbox.reset(newScene.dialogs, newScene.bossTexture)
-	dayNightCycle.play("day_cycle")
+	if index < scenes.size() - 1:	# Exclude credits scene
+		dayNightCycle.play("day_cycle")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://goxl8jxij1fe"]
+[gd_scene load_steps=31 format=3 uid="uid://goxl8jxij1fe"]
 
 [ext_resource type="PackedScene" uid="uid://csykklkmqo167" path="res://scenes/FastFood.tscn" id="1_4afb6"]
 [ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_dh0aw"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c5byrwsql8c6j" path="res://textures/boss_houseflipper.png" id="9_y711h"]
 [ext_resource type="AudioStream" uid="uid://b3mnj8ufctcmm" path="res://audio/kenney_interface-sounds/Audio/back_004.ogg" id="10_6aeqm"]
 [ext_resource type="AudioStream" uid="uid://di50wd3ynpffh" path="res://audio/incorrect.wav" id="13_e5kgm"]
+[ext_resource type="AudioStream" uid="uid://bo4f70txwk0hr" path="res://audio/ticking-clock-sample.wav" id="15_cpoo2"]
 
 [sub_resource type="Animation" id="Animation_7eeog"]
 resource_name = "RESET"
@@ -285,6 +286,29 @@ tracks/1/keys = {
 "method": &"play"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AnimationPlayer/WinSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_cpoo2")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_cpoo2")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_cpoo2")
+}],
+"times": PackedFloat32Array(12, 13, 14)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o74f4"]
 _data = {
@@ -416,7 +440,7 @@ libraries = {
 }
 
 [node name="DayNightCycle" type="Node2D" parent="."]
-position = Vector2(576, 2000)
+position = Vector2(576, 2150)
 
 [node name="Sun" type="Node2D" parent="DayNightCycle"]
 position = Vector2(-617.22, -1747.65)
