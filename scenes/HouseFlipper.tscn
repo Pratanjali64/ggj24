@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c5byrwsql8c6j" path="res://textures/boss_houseflipper.png" id="2_j6qc4"]
 [ext_resource type="Script" path="res://scenes/Grabber.gd" id="2_qklsg"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="3_x55vs"]
-[ext_resource type="Texture2D" uid="uid://fh8amwobsdpo" path="res://textures/temp_furniture.png" id="5_p1ago"]
+[ext_resource type="Texture2D" uid="uid://cxjwrmvan8wfw" path="res://textures/couch.png" id="6_qlf88"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
 size = Vector2(10, 10)
@@ -37,8 +37,9 @@ size = Vector2(6, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulhkr"]
 size = Vector2(2000, 100)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dttm"]
-size = Vector2(129, 128)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8cd2j"]
+radius = 24.0
+height = 128.0
 
 [node name="HouseFlipper" type="Node2D"]
 script = ExtResource("1_h0x04")
@@ -150,24 +151,17 @@ grabberRigidBody = NodePath("../Grabber")
 pinJoint = NodePath("../PinJoint2D")
 
 [node name="Decor" type="RigidBody2D" parent="."]
-position = Vector2(124, 534)
+position = Vector2(224, 591)
+mass = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Decor"]
-texture = ExtResource("5_p1ago")
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("6_qlf88")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Decor"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_6dttm")
-
-[node name="Decor2" type="RigidBody2D" parent="."]
-position = Vector2(281, 538)
-
-[node name="Sprite2D" type="Sprite2D" parent="Decor2"]
-texture = ExtResource("5_p1ago")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor2"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_6dttm")
+position = Vector2(-1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8cd2j")
 
 [connection signal="area_entered" from="WinCondition" to="." method="_on_win_condition_area_entered"]
 [connection signal="area_exited" from="WinCondition" to="." method="_on_win_condition_area_exited"]
