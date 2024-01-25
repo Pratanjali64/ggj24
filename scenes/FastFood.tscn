@@ -223,7 +223,7 @@ texture = ExtResource("13_eddjh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ketchup"]
 position = Vector2(-86, -37)
-polygon = PackedVector2Array(8, 26, 8, -60, 17, -84, 29, -84, 39, -60, 38, 26)
+polygon = PackedVector2Array(8, 26, 8, -60, 19, -76, 28, -76, 39, -60, 39, 26)
 
 [node name="Mustard" type="RigidBody2D" parent="."]
 position = Vector2(271, 511)
@@ -239,7 +239,7 @@ texture = ExtResource("14_553ie")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mustard"]
 position = Vector2(-86, -37)
-polygon = PackedVector2Array(8, 26, 8, -60, 17, -84, 29, -84, 39, -60, 38, 26)
+polygon = PackedVector2Array(8, 26, 8, -60, 17, -75, 28, -75, 39, -60, 39, 26)
 
 [node name="Spatula" type="RigidBody2D" parent="."]
 position = Vector2(458, 434)
