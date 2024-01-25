@@ -15,7 +15,7 @@ const orangeThreshold = 500;
 const redThreshold = 5000;
 
 func _process(delta):
-	progressBar.value = 33.33 * progressIncrements
+	progressBar.value = 34 * progressIncrements
 	if !win:
 		if progressIncrements >= 3:
 			timer.stop();
@@ -26,13 +26,13 @@ func _process(delta):
 
 func _on_speedometer_update_timer_timeout():
 	speedLabel.text = "Order No. " + str(int(burger.linear_velocity.length() / 100));
-	if (burger.linear_velocity.length() >= orangeThreshold):
-		speedLabel.modulate = Color.ORANGE
 	if (burger.linear_velocity.length() >= redThreshold):
 		speedLabel.modulate = Color.RED
 		if progressIncrements < 3:
 			progressSound.play()
 			progressIncrements = progressIncrements + 1
+	elif (burger.linear_velocity.length() >= orangeThreshold):
+		speedLabel.modulate = Color.ORANGE
 	else:
 		speedLabel.modulate = Color.AQUAMARINE
 		if progressIncrements > 0:
