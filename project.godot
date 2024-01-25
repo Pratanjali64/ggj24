@@ -13,7 +13,12 @@ config_version=5
 config/name="Global Game Jam 2024"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://textures/boss_fastfood.png"
+
+[display]
+
+window/size/resizable=false
+mouse_cursor/custom_image="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0047.png"
 
 [rendering]
 
