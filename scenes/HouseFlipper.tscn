@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cao133ey23fvu"]
+[gd_scene load_steps=16 format=3 uid="uid://cao133ey23fvu"]
 
 [ext_resource type="Script" path="res://scenes/HouseFlipper.gd" id="1_h0x04"]
 [ext_resource type="Texture2D" uid="uid://c873ebj7jtks6" path="res://textures/temp_house.png" id="1_ijoo4"]
@@ -8,9 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cxjwrmvan8wfw" path="res://textures/couch.png" id="6_qlf88"]
 [ext_resource type="Texture2D" uid="uid://d0ba0dro8l5is" path="res://textures/backgrounds/Skyscrapers_of_Shinjuku_2009_January_(revised).jpg" id="7_tka8i"]
 [ext_resource type="Texture2D" uid="uid://cunh5fnyc8yea" path="res://textures/lamp.png" id="7_vbvl0"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
-size = Vector2(10, 10)
+[ext_resource type="Texture2D" uid="uid://bivwnbbghdyg8" path="res://textures/boss_paintbrush.png" id="9_mpii0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4b458"]
 size = Vector2(123.037, 120.208)
@@ -25,9 +23,6 @@ size = Vector2(394, 1152)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_av1we"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_qe0j7"]
-size = Vector2(6, 6)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jiaj"]
 size = Vector2(1424, 112)
 
@@ -41,9 +36,6 @@ position = Vector2(569, 522)
 node_a = NodePath("../Grabber")
 node_b = NodePath("../Grabber")
 softness = 0.4
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="PinJoint2D"]
-mesh = SubResource("QuadMesh_q2v6s")
 
 [node name="House" type="RigidBody2D" parent="."]
 position = Vector2(569, 522)
@@ -107,9 +99,6 @@ freeze = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grabber"]
 shape = SubResource("CircleShape2D_av1we")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Grabber"]
-mesh = SubResource("QuadMesh_qe0j7")
-
 [node name="WinCondition" type="Area2D" parent="."]
 position = Vector2(518, 619)
 collision_layer = 4
@@ -159,6 +148,18 @@ z_index = -5
 position = Vector2(569, 345)
 scale = Vector2(1.42941, 1.48602)
 texture = ExtResource("7_tka8i")
+
+[node name="Boss" type="RigidBody2D" parent="."]
+position = Vector2(1097, 582)
+mass = 60.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Boss"]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("9_mpii0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boss"]
+position = Vector2(2, -27)
+polygon = PackedVector2Array(-11, 66, -12, 20, -10, 7, -11, -14, 6, -14, 5, 7, 9, 20, 9, 66)
 
 [connection signal="area_entered" from="WinCondition" to="." method="_on_win_condition_area_entered"]
 [connection signal="area_exited" from="WinCondition" to="." method="_on_win_condition_area_exited"]

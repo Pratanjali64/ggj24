@@ -10,15 +10,17 @@ config_version=5
 
 [application]
 
-config/name="Global Game Jam 2024"
+config/name="agency.tmp"
+config/description="agency.tmp - A Global Game Jam 2024 submission!"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://textures/boss_fastfood.png"
 
 [display]
 
-window/size/resizable=false
+window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0047.png"
+mouse_cursor/custom_image_hotspot=Vector2(8, 8)
 
 [rendering]
 

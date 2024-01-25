@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvegigxso3pmx"]
+[gd_scene load_steps=11 format=3 uid="uid://dvegigxso3pmx"]
 
 [ext_resource type="Script" path="res://scenes/Waiter.gd" id="1_ht704"]
 [ext_resource type="Texture2D" uid="uid://bp57g1tqro18n" path="res://textures/boss_waiter.png" id="2_326av"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="4_drsix"]
 [ext_resource type="Texture2D" uid="uid://u6b6inerk7io" path="res://textures/backgrounds/Barbieri_-_ViaSophia25668.jpg" id="4_kqyph"]
+[ext_resource type="Texture2D" uid="uid://bpr8ob5udp775" path="res://textures/boss_waiter_full.png" id="5_htuxf"]
+[ext_resource type="Script" path="res://scenes/Grabber.gd" id="5_yplcl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
 size = Vector2(1186, 242)
@@ -12,6 +14,8 @@ size = Vector2(1186, 242)
 size = Vector2(394, 1152)
 
 [sub_resource type="QuadMesh" id="QuadMesh_do4v0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vivlg"]
 
 [node name="Waiter" type="Node2D"]
 position = Vector2(0, 1)
@@ -54,5 +58,40 @@ texture = ExtResource("4_kqyph")
 [node name="WinConditionTimer" type="Timer" parent="."]
 wait_time = 14.0
 autostart = true
+
+[node name="Boss" type="RigidBody2D" parent="."]
+position = Vector2(1022, 475)
+mass = 60.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Boss"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_htuxf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boss"]
+position = Vector2(2, -27)
+polygon = PackedVector2Array(-7, 170, -1, 50, -32, -4, -17, -106, 47, -105, 66, 11, 48, 32, 62, 170)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(569, 649)
+node_a = NodePath("../Grabber")
+node_b = NodePath("../Grabber")
+softness = 0.4
+
+[node name="Grabber" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+can_sleep = false
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grabber"]
+shape = SubResource("CircleShape2D_vivlg")
+
+[node name="RayCast2D" type="RayCast2D" parent="." node_paths=PackedStringArray("grabberRigidBody", "pinJoint")]
+target_position = Vector2(0, 1)
+hit_from_inside = true
+script = ExtResource("5_yplcl")
+grabber = NodePath("../Grabber")
+grabberRigidBody = NodePath("../Grabber")
+pinJoint = NodePath("../PinJoint2D")
 
 [connection signal="timeout" from="WinConditionTimer" to="." method="_on_win_condition_timer_timeout"]
