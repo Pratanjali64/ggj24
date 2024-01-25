@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bxbpwe053bko6"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bxbpwe053bko6"]
 
 [ext_resource type="FontFile" uid="uid://dfp7hdqf60lu7" path="res://fonts/OstrichSans-Heavy.otf" id="1_csyq1"]
 [ext_resource type="FontFile" uid="uid://c88qgascv10d8" path="res://fonts/OstrichSans-Medium.otf" id="2_kml3k"]
@@ -19,6 +19,9 @@ expand_margin_top = 16.0
 expand_margin_right = 16.0
 expand_margin_bottom = 16.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rneys"]
+bg_color = Color(1, 0.0784314, 0, 1)
+
 [resource]
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_csyq1")
@@ -28,6 +31,7 @@ MarginContainer/constants/margin_right = 16
 MarginContainer/constants/margin_top = 16
 Panel/styles/panel = SubResource("StyleBoxFlat_c4hat")
 PanelContainer/styles/panel = null
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_rneys")
 RichTextLabel/font_sizes/bold_font_size = 32
 RichTextLabel/font_sizes/normal_font_size = 32
 RichTextLabel/fonts/bold_font = ExtResource("1_csyq1")

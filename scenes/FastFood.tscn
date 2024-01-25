@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://csykklkmqo167"]
+[gd_scene load_steps=25 format=3 uid="uid://csykklkmqo167"]
 
 [ext_resource type="Script" path="res://scenes/FastFood.gd" id="1_4pga6"]
 [ext_resource type="Texture2D" uid="uid://d4alfgc0702s" path="res://textures/temp_burger.png" id="2_2rcli"]
@@ -8,8 +8,10 @@
 [ext_resource type="Theme" uid="uid://bxbpwe053bko6" path="res://theme_ggj24.tres" id="5_q1mgy"]
 [ext_resource type="Script" path="res://scenes/TV.gd" id="6_ad3dj"]
 [ext_resource type="Texture2D" uid="uid://c8d14fnamqvvj" path="res://textures/tv.png" id="7_yarxi"]
+[ext_resource type="AudioStream" uid="uid://bnki1mjox7yif" path="res://audio/kenney_interface-sounds/Audio/error_005.ogg" id="9_0pauq"]
 [ext_resource type="Texture2D" uid="uid://diclerka6tpc5" path="res://textures/plug.png" id="9_ddgrr"]
 [ext_resource type="Texture2D" uid="uid://bgg4560lgodgp" path="res://textures/backgrounds/Küche.JPG" id="10_1gtgm"]
+[ext_resource type="AudioStream" uid="uid://cjklyj3ujblu6" path="res://audio/kenney_interface-sounds/Audio/pluck_001.ogg" id="10_pxpvs"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
 size = Vector2(10, 10)
@@ -139,7 +141,7 @@ shape = SubResource("CircleShape2D_av1we")
 mesh = SubResource("QuadMesh_qe0j7")
 
 [node name="SpeedometerUpdateTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.6
 autostart = true
 
 [node name="RayCast2D" type="RayCast2D" parent="." node_paths=PackedStringArray("grabberRigidBody", "pinJoint")]
@@ -166,9 +168,9 @@ tvPlug = NodePath("../TVPlug")
 [node name="Label" type="Label" parent="TV"]
 z_index = 1
 offset_left = -57.0
-offset_top = -12.0
+offset_top = -22.0
 offset_right = 33.0
-offset_bottom = 11.0
+offset_bottom = 1.0
 theme = ExtResource("5_q1mgy")
 text = "Order No. 0
 "
@@ -179,6 +181,21 @@ shape = SubResource("RectangleShape2D_r43sr")
 [node name="Sprite2D" type="Sprite2D" parent="TV"]
 scale = Vector2(1.2, 0.6)
 texture = ExtResource("7_yarxi")
+
+[node name="ProgressBar" type="ProgressBar" parent="TV"]
+offset_left = -54.0
+offset_top = 9.0
+offset_right = 57.0
+offset_bottom = 22.0
+theme = ExtResource("5_q1mgy")
+step = 34.0
+show_percentage = false
+
+[node name="SuccessSound" type="AudioStreamPlayer" parent="TV"]
+stream = ExtResource("9_0pauq")
+
+[node name="FailureSound" type="AudioStreamPlayer" parent="TV"]
+stream = ExtResource("10_pxpvs")
 
 [node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
 position = Vector2(1037, 291)
