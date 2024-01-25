@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5byrwsql8c6j"
-path="res://.godot/imported/boss_houseflipper.png-a56af7342033e05bd56b4649c40b3d61.ctex"
+uid="uid://b8q77i85pdxr3"
+path="res://.godot/imported/boss_paintbrush_icon.png-a7dcf1e757f654409147de8e8a5d0dbc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/boss_houseflipper.png"
-dest_files=["res://.godot/imported/boss_houseflipper.png-a56af7342033e05bd56b4649c40b3d61.ctex"]
+source_file="res://textures/boss_paintbrush_icon.png"
+dest_files=["res://.godot/imported/boss_paintbrush_icon.png-a7dcf1e757f654409147de8e8a5d0dbc.ctex"]
 
 [params]
 

@@ -13,9 +13,9 @@
 [ext_resource type="Theme" uid="uid://bxbpwe053bko6" path="res://theme_ggj24.tres" id="8_cy6fp"]
 [ext_resource type="Texture2D" uid="uid://lnf8phn2wd6x" path="res://textures/failure.png" id="9_5cdcy"]
 [ext_resource type="Script" path="res://ProgressiveChat.gd" id="9_qd132"]
-[ext_resource type="Texture2D" uid="uid://c5byrwsql8c6j" path="res://textures/boss_houseflipper.png" id="9_y711h"]
 [ext_resource type="AudioStream" uid="uid://b3mnj8ufctcmm" path="res://audio/kenney_interface-sounds/Audio/back_004.ogg" id="10_6aeqm"]
 [ext_resource type="AudioStream" uid="uid://di50wd3ynpffh" path="res://audio/incorrect.wav" id="13_e5kgm"]
+[ext_resource type="Texture2D" uid="uid://cdhj8yx72kbko" path="res://textures/boss_generic.png" id="14_yaqw6"]
 [ext_resource type="AudioStream" uid="uid://bo4f70txwk0hr" path="res://audio/ticking-clock-sample.wav" id="15_cpoo2"]
 
 [sub_resource type="Animation" id="Animation_7eeog"]
@@ -396,7 +396,7 @@ theme = ExtResource("8_cy6fp")
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Panel/Control/Panel"]
 position = Vector2(31, 21)
 scale = Vector2(0.16, 0.16)
-texture = ExtResource("9_y711h")
+texture = ExtResource("14_yaqw6")
 
 [node name="Control2" type="Control" parent="MarginContainer/Panel"]
 anchors_preset = 0

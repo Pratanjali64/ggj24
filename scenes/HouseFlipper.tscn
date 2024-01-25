@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/HouseFlipper.gd" id="1_h0x04"]
 [ext_resource type="Texture2D" uid="uid://c873ebj7jtks6" path="res://textures/temp_house.png" id="1_ijoo4"]
-[ext_resource type="Texture2D" uid="uid://c5byrwsql8c6j" path="res://textures/boss_houseflipper.png" id="2_j6qc4"]
 [ext_resource type="Script" path="res://scenes/Grabber.gd" id="2_qklsg"]
+[ext_resource type="Texture2D" uid="uid://b8q77i85pdxr3" path="res://textures/boss_paintbrush_icon.png" id="2_qpnd6"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="3_x55vs"]
 [ext_resource type="Texture2D" uid="uid://cxjwrmvan8wfw" path="res://textures/couch.png" id="6_qlf88"]
 [ext_resource type="Texture2D" uid="uid://d0ba0dro8l5is" path="res://textures/backgrounds/Skyscrapers_of_Shinjuku_2009_January_(revised).jpg" id="7_tka8i"]
@@ -34,7 +34,7 @@ size = Vector2(1424, 112)
 [node name="HouseFlipper" type="Node2D"]
 script = ExtResource("1_h0x04")
 dialogs = ["Your job today is: ", "*HOUSE FLIPPER%"]
-bossTexture = ExtResource("2_j6qc4")
+bossTexture = ExtResource("2_qpnd6")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2(569, 522)

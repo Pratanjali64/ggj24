@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://csykklkmqo167"]
+[gd_scene load_steps=27 format=3 uid="uid://csykklkmqo167"]
 
 [ext_resource type="Script" path="res://scenes/FastFood.gd" id="1_4pga6"]
-[ext_resource type="Texture2D" uid="uid://d4alfgc0702s" path="res://textures/temp_burger.png" id="2_2rcli"]
 [ext_resource type="Texture2D" uid="uid://8nc6f2ro5dod" path="res://textures/boss_fastfood.png" id="2_w314a"]
+[ext_resource type="Texture2D" uid="uid://crn0tcigqhqg4" path="res://textures/burger.png" id="3_2vchw"]
 [ext_resource type="Script" path="res://scenes/Grabber.gd" id="3_6gmmi"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="4_3wr3p"]
 [ext_resource type="Theme" uid="uid://bxbpwe053bko6" path="res://theme_ggj24.tres" id="5_q1mgy"]
@@ -12,12 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://diclerka6tpc5" path="res://textures/plug.png" id="9_ddgrr"]
 [ext_resource type="Texture2D" uid="uid://bgg4560lgodgp" path="res://textures/backgrounds/Küche.JPG" id="10_1gtgm"]
 [ext_resource type="AudioStream" uid="uid://cjklyj3ujblu6" path="res://audio/kenney_interface-sounds/Audio/pluck_001.ogg" id="10_pxpvs"]
+[ext_resource type="Texture2D" uid="uid://c4alm8fhdwllv" path="res://textures/ketchup.png" id="13_eddjh"]
+[ext_resource type="Texture2D" uid="uid://5iq5b506ykji" path="res://textures/mustard.png" id="14_553ie"]
+[ext_resource type="Texture2D" uid="uid://swkrx6d00opu" path="res://textures/spatula.png" id="15_gfg5i"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
 size = Vector2(10, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gohya"]
-size = Vector2(7.4, 7.1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
 size = Vector2(1186, 242)
@@ -62,7 +62,7 @@ softness = 0.4
 mesh = SubResource("QuadMesh_q2v6s")
 
 [node name="Burger" type="RigidBody2D" parent="."]
-position = Vector2(256, 530)
+position = Vector2(331, 538)
 mass = 2.0
 sleeping = true
 linear_damp = 1.0
@@ -70,13 +70,12 @@ angular_damp = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Burger"]
 position = Vector2(-62.4, -64.2874)
-scale = Vector2(0.56875, 0.535741)
-texture = ExtResource("2_2rcli")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_2vchw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger"]
-position = Vector2(-63, -64.5)
-scale = Vector2(10, 10)
-shape = SubResource("RectangleShape2D_gohya")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Burger"]
+position = Vector2(-86, -37)
+polygon = PackedVector2Array(-2, -1, -3, -39, 13, -54, 39, -55, 53, -41, 53, -1)
 
 [node name="Map" type="StaticBody2D" parent="."]
 
@@ -220,5 +219,54 @@ z_index = -5
 position = Vector2(581.5, 319.5)
 scale = Vector2(0.574707, 0.438151)
 texture = ExtResource("10_1gtgm")
+
+[node name="Ketchup" type="RigidBody2D" parent="."]
+position = Vector2(225, 511)
+mass = 2.0
+sleeping = true
+linear_damp = 1.0
+angular_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Ketchup"]
+position = Vector2(-62.4, -64.2874)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_eddjh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ketchup"]
+position = Vector2(-86, -37)
+polygon = PackedVector2Array(8, 26, 8, -60, 17, -84, 29, -84, 39, -60, 38, 26)
+
+[node name="Mustard" type="RigidBody2D" parent="."]
+position = Vector2(271, 511)
+mass = 2.0
+sleeping = true
+linear_damp = 1.0
+angular_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Mustard"]
+position = Vector2(-62.4, -64.2874)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("14_553ie")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mustard"]
+position = Vector2(-86, -37)
+polygon = PackedVector2Array(8, 26, 8, -60, 17, -84, 29, -84, 39, -60, 38, 26)
+
+[node name="Spatula" type="RigidBody2D" parent="."]
+position = Vector2(458, 434)
+rotation = -1.46012
+mass = 2.0
+sleeping = true
+linear_damp = 1.0
+angular_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Spatula"]
+position = Vector2(-62.4, -64.2874)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("15_gfg5i")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spatula"]
+position = Vector2(-74, -31)
+polygon = PackedVector2Array(8, 26, 8, -50, -2, -59, -2, -91, 26, -90, 26, -59, 18, -50, 21, 26)
 
 [connection signal="timeout" from="SpeedometerUpdateTimer" to="." method="_on_speedometer_update_timer_timeout"]
