@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://goxl8jxij1fe"]
+[gd_scene load_steps=33 format=3 uid="uid://goxl8jxij1fe"]
 
 [ext_resource type="PackedScene" uid="uid://csykklkmqo167" path="res://scenes/FastFood.tscn" id="1_4afb6"]
 [ext_resource type="PackedScene" uid="uid://cao133ey23fvu" path="res://scenes/HouseFlipper.tscn" id="1_dh0aw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cf8vtot5v01vw" path="res://textures/success.png" id="4_qj50i"]
 [ext_resource type="PackedScene" uid="uid://dvegigxso3pmx" path="res://scenes/Waiter.tscn" id="5_axdxl"]
 [ext_resource type="AudioStream" uid="uid://bx7iattcjk0p7" path="res://audio/Against_The_Grain30.wav" id="5_gtvcd"]
+[ext_resource type="PackedScene" uid="uid://dr7n36h0ye2a5" path="res://scenes/cargo_worker.tscn" id="6_i6y1q"]
 [ext_resource type="Theme" uid="uid://bxbpwe053bko6" path="res://theme_ggj24.tres" id="8_cy6fp"]
 [ext_resource type="Texture2D" uid="uid://lnf8phn2wd6x" path="res://textures/failure.png" id="9_5cdcy"]
 [ext_resource type="Script" path="res://ProgressiveChat.gd" id="9_qd132"]
@@ -329,7 +330,8 @@ gradient = SubResource("Gradient_sir0t")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_msjoe")
-scenes = [ExtResource("2_knjd3"), ExtResource("1_dh0aw"), ExtResource("1_4afb6"), ExtResource("5_axdxl"), ExtResource("4_n51df")]
+scenes = [ExtResource("2_knjd3"), ExtResource("1_dh0aw"), ExtResource("1_4afb6"), ExtResource("5_axdxl"), ExtResource("6_i6y1q"), ExtResource("4_n51df")]
+index = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cao133ey23fvu"]
+[gd_scene load_steps=17 format=3 uid="uid://cao133ey23fvu"]
 
 [ext_resource type="Script" path="res://scenes/HouseFlipper.gd" id="1_h0x04"]
 [ext_resource type="Texture2D" uid="uid://c873ebj7jtks6" path="res://textures/temp_house.png" id="1_ijoo4"]
@@ -13,7 +13,7 @@
 size = Vector2(10, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4b458"]
-size = Vector2(196, 44)
+size = Vector2(149, 86)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
 size = Vector2(1186, 242)
@@ -21,13 +21,7 @@ size = Vector2(1186, 242)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n50nf"]
 size = Vector2(394, 1152)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jalmr"]
-radius = 50.0
-height = 200.0
-
 [sub_resource type="QuadMesh" id="QuadMesh_do4v0"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4mfsq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_av1we"]
 
@@ -35,7 +29,7 @@ height = 200.0
 size = Vector2(6, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulhkr"]
-size = Vector2(2000, 100)
+size = Vector2(184, 112)
 
 [node name="HouseFlipper" type="Node2D"]
 script = ExtResource("1_h0x04")
@@ -94,24 +88,12 @@ shape = SubResource("RectangleShape2D_n50nf")
 position = Vector2(1351, 314)
 shape = SubResource("RectangleShape2D_n50nf")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map"]
-position = Vector2(980, 619)
-shape = SubResource("CapsuleShape2D_jalmr")
-
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Map"]
 texture_filter = 1
 texture_repeat = 2
 position = Vector2(615, 698)
 scale = Vector2(1432.5, 152)
 mesh = SubResource("QuadMesh_do4v0")
-texture = ExtResource("3_x55vs")
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="Map"]
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(981, 611)
-scale = Vector2(116.062, 96.75)
-mesh = SubResource("CapsuleMesh_4mfsq")
 texture = ExtResource("3_x55vs")
 
 [node name="Grabber" type="RigidBody2D" parent="."]

@@ -1,0 +1,402 @@
+[gd_scene load_steps=29 format=3 uid="uid://dr7n36h0ye2a5"]
+
+[ext_resource type="Script" path="res://scenes/HouseFlipper.gd" id="1_xvwbx"]
+[ext_resource type="Texture2D" uid="uid://cdhj8yx72kbko" path="res://textures/boss_generic.png" id="2_uenmn"]
+[ext_resource type="Texture2D" uid="uid://bao2238vugr1x" path="res://textures/temp_car.png" id="3_6oxcj"]
+[ext_resource type="Texture2D" uid="uid://cwl84qnpy8rnf" path="res://textures/temp_wheel.png" id="4_nmey4"]
+[ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="4_pvtvf"]
+[ext_resource type="Script" path="res://scenes/Grabber.gd" id="5_7172y"]
+[ext_resource type="Texture2D" uid="uid://ci5jlad5is6up" path="res://textures/temp_cargo.png" id="6_21m32"]
+[ext_resource type="Texture2D" uid="uid://blp7pi0yafspc" path="res://textures/backgrounds/Constanta_shipyard.JPG" id="7_wftvg"]
+[ext_resource type="Texture2D" uid="uid://r8ypsk7sblsg" path="res://textures/temp_cargo2.png" id="8_yv1vf"]
+[ext_resource type="Texture2D" uid="uid://h1b3ef2yo3au" path="res://textures/temp_cargo3.png" id="9_pa7x6"]
+[ext_resource type="Texture2D" uid="uid://lplkv71hahts" path="res://textures/temp_cargo4.png" id="10_2oyfg"]
+[ext_resource type="Script" path="res://scenes/TV.gd" id="12_qwq3f"]
+[ext_resource type="Texture2D" uid="uid://bkk0vajsvuqmd" path="res://textures/temp_cranehook.png" id="13_4j1ap"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4b458"]
+size = Vector2(149, 86)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2cos7"]
+radius = 10.0499
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
+size = Vector2(1186, 242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vlpn"]
+size = Vector2(394, 1767)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccrqb"]
+size = Vector2(394, 1727)
+
+[sub_resource type="QuadMesh" id="QuadMesh_do4v0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_av1we"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_qe0j7"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3uf0"]
+size = Vector2(256, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff1r8"]
+size = Vector2(256, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5t58u"]
+size = Vector2(16, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f84u"]
+size = Vector2(80, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulhkr"]
+size = Vector2(184, 112)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ikyum"]
+
+[node name="CargoWorker" type="Node2D"]
+script = ExtResource("1_xvwbx")
+dialogs = ["Your job today is: ", "*CARGO WORKER%"]
+bossTexture = ExtResource("2_uenmn")
+
+[node name="GrabberPinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(569, 522)
+node_a = NodePath("../Grabber")
+node_b = NodePath("../Grabber")
+softness = 0.4
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="GrabberPinJoint2D"]
+mesh = SubResource("QuadMesh_q2v6s")
+
+[node name="Car" type="RigidBody2D" parent="."]
+z_index = -10
+position = Vector2(677, 533)
+collision_layer = 2050
+collision_mask = 2050
+mass = 250.0
+sleeping = true
+linear_damp = 1.0
+angular_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Car"]
+position = Vector2(1.2, -0.0750189)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_6oxcj")
+
+[node name="WinZone" type="Area2D" parent="Car"]
+position = Vector2(-1, 12)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car/WinZone"]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_4b458")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Car"]
+position = Vector2(-59, 90)
+polygon = PackedVector2Array(5, -59, 6, -93, 23, -99, 41, -108, 67, -105, 83, -91, 110, -87, 109, -57, 89, -69, 76, -67, 67, -58, 48, -58, 29, -69)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Car"]
+position = Vector2(-31, 39)
+node_a = NodePath("..")
+node_b = NodePath("WheelLeft")
+bias = 0.046
+softness = 1.06
+
+[node name="WheelLeft" type="RigidBody2D" parent="Car/PinJoint2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car/PinJoint2D/WheelLeft"]
+shape = SubResource("CircleShape2D_2cos7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car/PinJoint2D/WheelLeft"]
+scale = Vector2(0.34375, 0.34375)
+texture = ExtResource("4_nmey4")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Car"]
+position = Vector2(27, 39)
+node_a = NodePath("..")
+node_b = NodePath("WheelRight")
+
+[node name="WheelRight" type="RigidBody2D" parent="Car/PinJoint2D2"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car/PinJoint2D2/WheelRight"]
+shape = SubResource("CircleShape2D_2cos7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car/PinJoint2D2/WheelRight"]
+scale = Vector2(0.34375, 0.34375)
+texture = ExtResource("4_nmey4")
+
+[node name="Map" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map"]
+position = Vector2(583, -111)
+shape = SubResource("RectangleShape2D_7550a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map"]
+position = Vector2(588, 743)
+shape = SubResource("RectangleShape2D_7550a")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map"]
+position = Vector2(-186, 22.5)
+shape = SubResource("RectangleShape2D_3vlpn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Map"]
+position = Vector2(1351, 26.5)
+shape = SubResource("RectangleShape2D_ccrqb")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Map"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(615, 698)
+scale = Vector2(1432.5, 152)
+mesh = SubResource("QuadMesh_do4v0")
+texture = ExtResource("4_pvtvf")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map"]
+position = Vector2(588, -741)
+shape = SubResource("RectangleShape2D_7550a")
+
+[node name="Grabber" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+can_sleep = false
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grabber"]
+shape = SubResource("CircleShape2D_av1we")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Grabber"]
+mesh = SubResource("QuadMesh_qe0j7")
+
+[node name="WinConditionTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="RayCast2D" type="RayCast2D" parent="." node_paths=PackedStringArray("grabberRigidBody", "pinJoint")]
+target_position = Vector2(0, 1)
+collision_mask = 3
+hit_from_inside = true
+script = ExtResource("5_7172y")
+grabber = NodePath("../Grabber")
+grabberRigidBody = NodePath("../Grabber")
+pinJoint = NodePath("../GrabberPinJoint2D")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -15
+position = Vector2(561.5, 311.5)
+scale = Vector2(0.604004, 0.458984)
+texture = ExtResource("7_wftvg")
+
+[node name="ShippingCrate" type="RigidBody2D" parent="."]
+position = Vector2(687, 556)
+mass = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate"]
+shape = SubResource("RectangleShape2D_w3uf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShippingCrate"]
+z_index = -2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_21m32")
+
+[node name="InnerWalls" type="RigidBody2D" parent="ShippingCrate"]
+collision_layer = 2
+collision_mask = 2
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate/InnerWalls"]
+position = Vector2(0, 58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ShippingCrate/InnerWalls"]
+position = Vector2(0, -58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ShippingCrate/InnerWalls"]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_5t58u")
+
+[node name="ShippingCrate2" type="RigidBody2D" parent="."]
+position = Vector2(144, 556)
+mass = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate2"]
+shape = SubResource("RectangleShape2D_w3uf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShippingCrate2"]
+z_index = -2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_yv1vf")
+
+[node name="InnerWalls" type="RigidBody2D" parent="ShippingCrate2"]
+collision_layer = 2
+collision_mask = 2
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate2/InnerWalls"]
+position = Vector2(0, 58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ShippingCrate2/InnerWalls"]
+position = Vector2(0, -58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ShippingCrate2/InnerWalls"]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_5t58u")
+
+[node name="ShippingCrate3" type="RigidBody2D" parent="."]
+position = Vector2(152, 427)
+mass = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate3"]
+shape = SubResource("RectangleShape2D_w3uf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShippingCrate3"]
+z_index = -2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_2oyfg")
+
+[node name="InnerWalls" type="RigidBody2D" parent="ShippingCrate3"]
+collision_layer = 2
+collision_mask = 2
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate3/InnerWalls"]
+position = Vector2(0, 58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ShippingCrate3/InnerWalls"]
+position = Vector2(0, -58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ShippingCrate3/InnerWalls"]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_5t58u")
+
+[node name="ShippingCrate4" type="RigidBody2D" parent="."]
+position = Vector2(165, 298)
+rotation = 3.14159
+mass = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate4"]
+shape = SubResource("RectangleShape2D_w3uf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShippingCrate4"]
+z_index = -2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_pa7x6")
+
+[node name="InnerWalls" type="RigidBody2D" parent="ShippingCrate4"]
+collision_layer = 2
+collision_mask = 2
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate4/InnerWalls"]
+position = Vector2(0, 58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ShippingCrate4/InnerWalls"]
+position = Vector2(0, -58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ShippingCrate4/InnerWalls"]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_5t58u")
+
+[node name="ShippingCrate5" type="RigidBody2D" parent="."]
+position = Vector2(669, 426)
+mass = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate5"]
+shape = SubResource("RectangleShape2D_w3uf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShippingCrate5"]
+z_index = -2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_yv1vf")
+
+[node name="InnerWalls" type="RigidBody2D" parent="ShippingCrate5"]
+collision_layer = 2
+collision_mask = 2
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShippingCrate5/InnerWalls"]
+position = Vector2(0, 58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ShippingCrate5/InnerWalls"]
+position = Vector2(0, -58)
+shape = SubResource("RectangleShape2D_ff1r8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ShippingCrate5/InnerWalls"]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_5t58u")
+
+[node name="Wire" type="Line2D" parent="."]
+z_index = -2
+position = Vector2(927, 92)
+points = PackedVector2Array(37, -341, 37, 66)
+default_color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[node name="CraneHook" type="RigidBody2D" parent="." node_paths=PackedStringArray("line", "tvPlug")]
+position = Vector2(964, 154)
+mass = 20.0
+gravity_scale = 0.3
+sleeping = true
+script = ExtResource("12_qwq3f")
+line = NodePath("../Wire")
+tvPlug = NodePath("../WireAnchor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CraneHook"]
+position = Vector2(-1, -2.5)
+shape = SubResource("RectangleShape2D_7f84u")
+
+[node name="Sprite2D" type="Sprite2D" parent="CraneHook"]
+scale = Vector2(1.2, 0.6)
+texture = ExtResource("13_4j1ap")
+
+[node name="WinCondition2" type="Area2D" parent="CraneHook"]
+collision_layer = 2052
+collision_mask = 2052
+gravity_space_override = 3
+gravity_point = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CraneHook/WinCondition2"]
+position = Vector2(-3, 1)
+shape = SubResource("RectangleShape2D_ulhkr")
+
+[node name="WireAnchor" type="RigidBody2D" parent="."]
+position = Vector2(965, -250)
+collision_layer = 2
+collision_mask = 2
+mass = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WireAnchor"]
+shape = SubResource("CircleShape2D_ikyum")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+position = Vector2(966, -248)
+node_a = NodePath("../WireAnchor")
+node_b = NodePath("../CraneHook")
+bias = 0.819
+length = 350.0
+rest_length = 350.0
+stiffness = 39.5
+damping = 0.34
+
+[connection signal="timeout" from="WinConditionTimer" to="." method="_on_win_condition_timer_timeout"]
+[connection signal="area_entered" from="CraneHook/WinCondition2" to="." method="_on_win_condition_2_area_entered"]
+[connection signal="area_exited" from="CraneHook/WinCondition2" to="." method="_on_win_condition_2_area_exited"]
