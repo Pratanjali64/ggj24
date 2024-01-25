@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="3_x55vs"]
 [ext_resource type="Texture2D" uid="uid://cxjwrmvan8wfw" path="res://textures/couch.png" id="6_qlf88"]
 [ext_resource type="Texture2D" uid="uid://d0ba0dro8l5is" path="res://textures/backgrounds/Skyscrapers_of_Shinjuku_2009_January_(revised).jpg" id="7_tka8i"]
+[ext_resource type="Texture2D" uid="uid://cunh5fnyc8yea" path="res://textures/lamp.png" id="7_vbvl0"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q2v6s"]
 size = Vector2(10, 10)
@@ -37,10 +38,6 @@ size = Vector2(6, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulhkr"]
 size = Vector2(2000, 100)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8cd2j"]
-radius = 24.0
-height = 128.0
 
 [node name="HouseFlipper" type="Node2D"]
 script = ExtResource("1_h0x04")
@@ -151,18 +148,29 @@ grabber = NodePath("../Grabber")
 grabberRigidBody = NodePath("../Grabber")
 pinJoint = NodePath("../PinJoint2D")
 
-[node name="Decor" type="RigidBody2D" parent="."]
+[node name="Couch" type="RigidBody2D" parent="."]
 position = Vector2(224, 591)
 mass = 20.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor"]
+[node name="Sprite2D" type="Sprite2D" parent="Couch"]
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("6_qlf88")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor"]
-position = Vector2(-1, 0)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_8cd2j")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Couch"]
+position = Vector2(-60, 24)
+polygon = PackedVector2Array(0, 0, -6, -30, 4, -36, 11, -47, 105, -48, 114, -36, 125, -29, 118, 1)
+
+[node name="Lamp" type="RigidBody2D" parent="."]
+position = Vector2(348, 581)
+mass = 20.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Lamp"]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("7_vbvl0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lamp"]
+position = Vector2(2, -27)
+polygon = PackedVector2Array(-11, 61, -7, 13, -13, 12, -6, -2, -1, -2, 7, 12, 0, 13, 4, 61)
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -5
