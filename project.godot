@@ -19,8 +19,8 @@ config/icon="res://textures/boss_fastfood.png"
 [display]
 
 window/stretch/mode="viewport"
-mouse_cursor/custom_image="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0047.png"
-mouse_cursor/custom_image_hotspot=Vector2(8, 8)
+mouse_cursor/custom_image="res://textures/hand_open.png"
+mouse_cursor/custom_image_hotspot=Vector2(16, 16)
 
 [rendering]
 

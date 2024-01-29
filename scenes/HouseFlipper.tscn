@@ -36,22 +36,6 @@ tracks/0/keys = {
 "values": [ExtResource("4_se3il"), ExtResource("5_w64wo"), ExtResource("6_8qj83"), ExtResource("4_se3il")]
 }
 
-[sub_resource type="Animation" id="Animation_lj20c"]
-resource_name = "teeter_right"
-length = 0.9
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("6_7grgg"), ExtResource("7_7xg8i"), ExtResource("8_v380u"), ExtResource("6_7grgg")]
-}
-
 [sub_resource type="Animation" id="Animation_3rd1j"]
 resource_name = "teeter_left"
 length = 0.9
@@ -66,6 +50,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("10_f0335"), ExtResource("11_n3eqo"), ExtResource("12_dm4x3"), ExtResource("10_f0335")]
+}
+
+[sub_resource type="Animation" id="Animation_lj20c"]
+resource_name = "teeter_right"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_7grgg"), ExtResource("7_7xg8i"), ExtResource("8_v380u"), ExtResource("6_7grgg")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fv7kc"]

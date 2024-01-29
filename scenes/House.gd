@@ -13,10 +13,10 @@ func _process(delta):
 	print_debug(str(rot));
 	if (rot > 25 and rot < 90):
 		if (!animationPlayer.is_playing()):
-			animationPlayer.play("teeter_right")
+			animationPlayer.play("teeter_left")
 	elif (rot > 270 and rot < 335):
 		if (!animationPlayer.is_playing()):
-			animationPlayer.play("teeter_left")
+			animationPlayer.play("teeter_right")
 	else:
 		if (!animationPlayer.is_playing()):
 			animationPlayer.play("idle")

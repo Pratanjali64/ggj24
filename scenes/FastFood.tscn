@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://5iq5b506ykji" path="res://textures/mustard.png" id="14_553ie"]
 [ext_resource type="Texture2D" uid="uid://swkrx6d00opu" path="res://textures/spatula.png" id="15_gfg5i"]
 [ext_resource type="Texture2D" uid="uid://d3c3kk7qqmyek" path="res://textures/boss_fastfood_full.png" id="16_c3mgv"]
+[ext_resource type="Texture2D" uid="uid://bexdtpt2pk66x" path="res://textures/metal_kitchen_work_table.png" id="17_gngom"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
 size = Vector2(1186, 242)
@@ -24,11 +25,6 @@ size = Vector2(1186, 242)
 size = Vector2(394, 1152)
 
 [sub_resource type="QuadMesh" id="QuadMesh_do4v0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jdlt"]
-size = Vector2(329, 144)
-
-[sub_resource type="QuadMesh" id="QuadMesh_taywg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_630ea"]
 size = Vector2(17, 9)
@@ -39,7 +35,10 @@ size = Vector2(17, 9)
 size = Vector2(153.6, 76.8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b17uh"]
-size = Vector2(48, 48)
+size = Vector2(48, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bh6pr"]
+size = Vector2(312, 170)
 
 [node name="FastFood" type="Node2D"]
 position = Vector2(0, 1)
@@ -54,7 +53,7 @@ node_b = NodePath("../Grabber")
 softness = 0.4
 
 [node name="Burger" type="RigidBody2D" parent="."]
-position = Vector2(331, 538)
+position = Vector2(288, 486)
 mass = 2.0
 sleeping = true
 linear_damp = 1.0
@@ -93,18 +92,6 @@ texture_repeat = 2
 position = Vector2(615, 698)
 scale = Vector2(1432.5, 152)
 mesh = SubResource("QuadMesh_do4v0")
-texture = ExtResource("4_3wr3p")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map"]
-position = Vector2(294, 575)
-shape = SubResource("RectangleShape2D_4jdlt")
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="Map"]
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(294.5, 574.5)
-scale = Vector2(331, 147)
-mesh = SubResource("QuadMesh_taywg")
 texture = ExtResource("4_3wr3p")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Map"]
@@ -167,7 +154,8 @@ text = "Order No. 0
 shape = SubResource("RectangleShape2D_r43sr")
 
 [node name="Sprite2D" type="Sprite2D" parent="TV"]
-scale = Vector2(1.2, 0.6)
+position = Vector2(3.14713e-05, -0.499996)
+scale = Vector2(0.214674, 0.197561)
 texture = ExtResource("7_yarxi")
 
 [node name="ProgressBar" type="ProgressBar" parent="TV"]
@@ -198,9 +186,11 @@ position = Vector2(1040, 300)
 
 [node name="Sprite2D" type="Sprite2D" parent="TVPlug"]
 rotation = 3.14159
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("9_ddgrr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TVPlug"]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_b17uh")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -210,7 +200,7 @@ scale = Vector2(0.574707, 0.438151)
 texture = ExtResource("10_1gtgm")
 
 [node name="Ketchup" type="RigidBody2D" parent="."]
-position = Vector2(225, 511)
+position = Vector2(182, 459)
 mass = 2.0
 sleeping = true
 linear_damp = 1.0
@@ -226,7 +216,7 @@ position = Vector2(-86, -37)
 polygon = PackedVector2Array(8, 26, 8, -60, 19, -76, 28, -76, 39, -60, 39, 26)
 
 [node name="Mustard" type="RigidBody2D" parent="."]
-position = Vector2(271, 511)
+position = Vector2(228, 459)
 mass = 2.0
 sleeping = true
 linear_damp = 1.0
@@ -242,7 +232,7 @@ position = Vector2(-86, -37)
 polygon = PackedVector2Array(8, 26, 8, -60, 17, -75, 28, -75, 39, -60, 39, 26)
 
 [node name="Spatula" type="RigidBody2D" parent="."]
-position = Vector2(458, 434)
+position = Vector2(415, 382)
 rotation = -1.46012
 mass = 2.0
 sleeping = true
@@ -269,5 +259,21 @@ texture = ExtResource("16_c3mgv")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boss"]
 position = Vector2(2, -27)
 polygon = PackedVector2Array(-55, 180, -68, -9, -56, -108, -10, -129, 39, -114, 43, -56, 62, -48, 65, 180)
+
+[node name="Table" type="RigidBody2D" parent="."]
+position = Vector2(309, 588)
+mass = 2.0
+sleeping = true
+linear_damp = 1.0
+angular_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Table"]
+position = Vector2(-62.4, -64.2874)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("17_gngom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
+position = Vector2(-64, -52)
+shape = SubResource("RectangleShape2D_bh6pr")
 
 [connection signal="timeout" from="SpeedometerUpdateTimer" to="." method="_on_speedometer_update_timer_timeout"]

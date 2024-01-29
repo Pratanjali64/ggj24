@@ -7,6 +7,7 @@ extends Node2D
 @export var index = 0; # Exported start index for ease of debugging
 
 func _ready():
+
 	reload_current_scene();
 
 func reload_current_scene():
