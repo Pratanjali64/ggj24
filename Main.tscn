@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://u7p2gt3n8q2x" path="res://scenes/Credits.tscn" id="4_n51df"]
 [ext_resource type="Texture2D" uid="uid://cf8vtot5v01vw" path="res://textures/success.png" id="4_qj50i"]
 [ext_resource type="PackedScene" uid="uid://dvegigxso3pmx" path="res://scenes/Waiter.tscn" id="5_axdxl"]
-[ext_resource type="AudioStream" uid="uid://bx7iattcjk0p7" path="res://audio/Against_The_Grain30.wav" id="5_gtvcd"]
 [ext_resource type="PackedScene" uid="uid://dr7n36h0ye2a5" path="res://scenes/cargo_worker.tscn" id="6_i6y1q"]
 [ext_resource type="Theme" uid="uid://bxbpwe053bko6" path="res://theme_ggj24.tres" id="8_cy6fp"]
+[ext_resource type="AudioStream" uid="uid://b3tcycnilj6qy" path="res://audio/zany-song-idea-1.wav" id="8_gnwrg"]
 [ext_resource type="Texture2D" uid="uid://lnf8phn2wd6x" path="res://textures/failure.png" id="9_5cdcy"]
 [ext_resource type="Script" path="res://ProgressiveChat.gd" id="9_qd132"]
 [ext_resource type="AudioStream" uid="uid://b3mnj8ufctcmm" path="res://audio/kenney_interface-sounds/Audio/back_004.ogg" id="10_6aeqm"]
@@ -336,7 +336,7 @@ scenes = [ExtResource("2_knjd3"), ExtResource("1_dh0aw"), ExtResource("1_4afb6")
 anchor_mode = 0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_gtvcd")
+stream = ExtResource("8_gnwrg")
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

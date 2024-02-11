@@ -11,12 +11,19 @@ func _ready():
 func _process(delta):
 	var rot = (360 + int(rotation_degrees)) % 360;
 	print_debug(str(rot));
-	if (rot > 25 and rot < 90):
-		if (!animationPlayer.is_playing()):
-			animationPlayer.play("teeter_left")
-	elif (rot > 270 and rot < 335):
-		if (!animationPlayer.is_playing()):
-			animationPlayer.play("teeter_right")
-	else:
-		if (!animationPlayer.is_playing()):
-			animationPlayer.play("idle")
+	if (rot > 5 and rot < 90):
+		animationPlayer.play("teeter_right")
+		
+	elif (rot >= 90 and rot <180):
+		lock_rotation = true;
+		animationPlayer.play("collapse_right")
+	
+	elif (rot > 270 and rot < 355):
+		animationPlayer.play("teeter_left")
+		
+	elif (rot <= 270 and rot >= 180):
+		lock_rotation = true;
+		animationPlayer.play("collapse_left")	
+		
+	else: #(!animationPlayer.is_playing()):
+		animationPlayer.play("idle")

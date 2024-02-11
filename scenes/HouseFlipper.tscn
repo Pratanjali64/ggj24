@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cao133ey23fvu"]
+[gd_scene load_steps=37 format=3 uid="uid://cao133ey23fvu"]
 
 [ext_resource type="Script" path="res://scenes/HouseFlipper.gd" id="1_h0x04"]
 [ext_resource type="Script" path="res://scenes/Grabber.gd" id="2_qklsg"]
@@ -6,9 +6,11 @@
 [ext_resource type="Script" path="res://scenes/House.gd" id="3_8ow2s"]
 [ext_resource type="Texture2D" uid="uid://bv6tm12i5tmc4" path="res://textures/kenney_pattern-pack-pixel/Tiles (Color)/tile_0026.png" id="3_x55vs"]
 [ext_resource type="Texture2D" uid="uid://p8vu6p3ylad2" path="res://textures/House_idle1.png" id="4_se3il"]
+[ext_resource type="Texture2D" uid="uid://d3u0jq242h37w" path="res://textures/House_left_collapse1.png" id="5_tlb3r"]
 [ext_resource type="Texture2D" uid="uid://3ov0n6deajpv" path="res://textures/House_idle2.png" id="5_w64wo"]
 [ext_resource type="Texture2D" uid="uid://clnupsmv2pjgw" path="res://textures/House_right_teeter1.png" id="6_7grgg"]
 [ext_resource type="Texture2D" uid="uid://b2tbs6wlqvdd5" path="res://textures/House_idle3.png" id="6_8qj83"]
+[ext_resource type="Texture2D" uid="uid://diqf5y3p5aur3" path="res://textures/House_left_collapse3.png" id="6_qdgy6"]
 [ext_resource type="Texture2D" uid="uid://cxjwrmvan8wfw" path="res://textures/couch.png" id="6_qlf88"]
 [ext_resource type="Texture2D" uid="uid://bh1114lj31afv" path="res://textures/House_right_teeter2.png" id="7_7xg8i"]
 [ext_resource type="Texture2D" uid="uid://d0ba0dro8l5is" path="res://textures/backgrounds/Skyscrapers_of_Shinjuku_2009_January_(revised).jpg" id="7_tka8i"]
@@ -18,10 +20,42 @@
 [ext_resource type="Texture2D" uid="uid://d1s7ranqn54h6" path="res://textures/House_left_teeter1.png" id="10_f0335"]
 [ext_resource type="Texture2D" uid="uid://dlt3hgcpqcubd" path="res://textures/House_left_teeter2.png" id="11_n3eqo"]
 [ext_resource type="Texture2D" uid="uid://dsl5rlwcgr754" path="res://textures/House_left_teeter3.png" id="12_dm4x3"]
+[ext_resource type="Texture2D" uid="uid://c4qg7sdcnkx70" path="res://textures/House_right_collapse1.png" id="13_c1e6s"]
+[ext_resource type="Texture2D" uid="uid://cs2yglxkxswn5" path="res://textures/House_right_collapse2.png" id="14_t4kiv"]
+[ext_resource type="Texture2D" uid="uid://ihmh1w0njyp6" path="res://textures/House_right_collapse3.png" id="15_m4lg4"]
+
+[sub_resource type="Animation" id="Animation_c3f86"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_tlb3r"), ExtResource("6_qdgy6"), ExtResource("4_se3il")]
+}
+
+[sub_resource type="Animation" id="Animation_1gr8c"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("13_c1e6s"), ExtResource("14_t4kiv"), ExtResource("15_m4lg4")]
+}
 
 [sub_resource type="Animation" id="Animation_qrmdn"]
 resource_name = "idle"
 length = 0.9
+loop_mode = 1
 step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -38,7 +72,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_3rd1j"]
 resource_name = "teeter_left"
-length = 0.9
+length = 0.3
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,15 +81,16 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("10_f0335"), ExtResource("11_n3eqo"), ExtResource("12_dm4x3"), ExtResource("10_f0335")]
+"values": [ExtResource("10_f0335"), ExtResource("11_n3eqo"), ExtResource("12_dm4x3")]
 }
 
 [sub_resource type="Animation" id="Animation_lj20c"]
 resource_name = "teeter_right"
-length = 0.9
+length = 0.3
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -62,21 +98,38 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("6_7grgg"), ExtResource("7_7xg8i"), ExtResource("8_v380u"), ExtResource("6_7grgg")]
+"values": [ExtResource("6_7grgg"), ExtResource("7_7xg8i"), ExtResource("8_v380u")]
+}
+
+[sub_resource type="Animation" id="Animation_mg882"]
+
+[sub_resource type="Animation" id="Animation_xfepi"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_c1e6s")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fv7kc"]
 _data = {
+"collapse_left": SubResource("Animation_c3f86"),
+"collapse_right": SubResource("Animation_1gr8c"),
 "idle": SubResource("Animation_qrmdn"),
 "teeter_left": SubResource("Animation_3rd1j"),
-"teeter_right": SubResource("Animation_lj20c")
+"teeter_right": SubResource("Animation_lj20c"),
+"tween_left": SubResource("Animation_mg882"),
+"tween_right": SubResource("Animation_xfepi")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4b458"]
-size = Vector2(125.865, 124.451)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7550a"]
 size = Vector2(1186, 242)
@@ -103,7 +156,7 @@ node_b = NodePath("../Grabber")
 softness = 0.4
 
 [node name="House" type="RigidBody2D" parent="."]
-position = Vector2(646, 515)
+position = Vector2(722, 468)
 mass = 250.0
 sleeping = true
 linear_damp = 1.0
@@ -112,27 +165,20 @@ script = ExtResource("3_8ow2s")
 
 [node name="Sprite2D" type="Sprite2D" parent="House"]
 position = Vector2(1.2, -0.0750189)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_se3il")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="House"]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_fv7kc")
 }
-
-[node name="Roof" type="Area2D" parent="House"]
-position = Vector2(-1, 12)
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Roof"]
-position = Vector2(2.5, -54.5)
-rotation = 0.785398
-shape = SubResource("RectangleShape2D_4b458")
+autoplay = "idle"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="House"]
-position = Vector2(-59, 90)
-polygon = PackedVector2Array(-17, 1, -17, -103, -29, -125, 60, -183, 151, -126, 142, -105, 142, 1)
+position = Vector2(1.2, -0.0750189)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(320, 320, -320, 320, -320, -320, 320, -320)
 
 [node name="Map" type="StaticBody2D" parent="."]
 
